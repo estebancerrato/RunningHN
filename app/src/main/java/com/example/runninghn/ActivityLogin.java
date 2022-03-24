@@ -6,10 +6,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -32,7 +34,10 @@ import java.util.HashMap;
 public class ActivityLogin extends AppCompatActivity {
     Button btnIngresar, btnRegistrarse;
     EditText txtcorreo, txtcontrasenia;
+    CheckBox Recordar;
     final Context context = this;
+
+    private SharedPreferences mSharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +47,7 @@ public class ActivityLogin extends AppCompatActivity {
         btnRegistrarse = (Button)findViewById(R.id.albtnRegistrar);
         txtcorreo = (EditText) findViewById(R.id.altxtUser);
         txtcontrasenia = (EditText) findViewById(R.id.altxtPass);
-
+        Recordar = (CheckBox) findViewById(R.id.alckRecordar);
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +66,50 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//======================PERSISTENCIA DE DATOS=========================================//
+
+        cargarDatosGuardados();
+
+        Recordar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loguearCheckbox(view);
+            }
+        });
+
+
+
+    }
+
+    private void cargarDatosGuardados() {
+        mSharedPrefs = getSharedPreferences("credencales",Context.MODE_PRIVATE);//Abre el archivo credenciales sin necedidad de volver a crearlo.
+
+        //se crea variable con la preferencias y le asignamos el identificador
+        String user = mSharedPrefs.getString("usuario","No existe informacion");
+        String pass = mSharedPrefs.getString("password","No existe informacion");
+
+        txtcorreo.setText(user);
+        txtcontrasenia.setText(pass);
+    }
+
+    //======================PERSISTENCIA DE DATOS=========================================//
+    public void loguearCheckbox(View v) {
+        String s = "Estado: " + (Recordar.isChecked() ? "Datos Guardados" : "");
+        Toast.makeText(this, s, Toast.LENGTH_LONG).show();
+
+        mSharedPrefs = getSharedPreferences("credencales",Context.MODE_PRIVATE);
+
+        String user = txtcorreo.getText().toString();
+        String pass = txtcontrasenia.getText().toString();
+
+        SharedPreferences.Editor editor = mSharedPrefs.edit();
+        editor.putString("usuario",user);
+        editor.putString("password",pass);
+
+        txtcorreo.setText(user);
+        txtcontrasenia.setText(pass);
+
+        editor.commit();
     }
 
 
