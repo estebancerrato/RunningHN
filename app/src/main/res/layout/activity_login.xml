@@ -49,6 +49,12 @@
         android:layout_height="wrap_content"
         android:text="Ingresar" />
 
+    <CheckBox
+        android:id="@+id/alckRecordar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recordar datos" />
+
     <TextView
         android:id="@+id/altxtContra"
         android:layout_width="match_parent"
