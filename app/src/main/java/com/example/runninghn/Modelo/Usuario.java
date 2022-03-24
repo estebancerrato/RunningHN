@@ -31,6 +31,11 @@ public class Usuario
         this.foto = foto;
     }
 
+    public Usuario(String correo, String contraseña) {
+        this.correo = correo;
+        this.contraseña = contraseña;
+    }
+
     public int getId() {
         return id;
     }
