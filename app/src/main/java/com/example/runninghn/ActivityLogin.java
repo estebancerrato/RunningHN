@@ -88,8 +88,15 @@ public class ActivityLogin extends AppCompatActivity {
         String user = mSharedPrefs.getString("usuario","No existe informacion");
         String pass = mSharedPrefs.getString("password","No existe informacion");
 
-        txtcorreo.setText(user);
-        txtcontrasenia.setText(pass);
+        //txtcorreo.setText(user);
+        //txtcontrasenia.setText(pass);
+
+///===========INICION AUTOMATICO===========================//
+        if (user!="" && pass!=""){
+            loginUsuario(user,pass);
+        }else {
+            Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //======================PERSISTENCIA DE DATOS=========================================//
