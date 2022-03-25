@@ -126,7 +126,7 @@ public class ActivityLogin extends AppCompatActivity {
 
                         if (response.getString("mensaje").toString().equals("login exitoso")){
                             Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),ActivityRegistrar.class);
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                             finish();
                         }else{
