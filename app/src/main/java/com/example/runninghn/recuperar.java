@@ -2,6 +2,7 @@ package com.example.runninghn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -34,7 +35,7 @@ import javax.mail.internet.MimeMessage;
 
 import cz.msebera.android.httpclient.Header;
 
-public class recuperar extends AppCompatActivity {
+public class recuperar extends Activity {
     Session session = null; //Inicio de session para autenticar usuario y password
     ProgressDialog pdialog = null; //dialogo del proceso
     EditText destinatario; //Ingreso del correo a enviar
@@ -107,10 +108,10 @@ public class recuperar extends AppCompatActivity {
                     progressDialog.dismiss();
                     try{
                         final JSONArray jsonArray = new JSONArray(new String(responseBody)); //decodificamos el Json que nos viene del servidor
-                        for (int i = 0; i <jsonArray.length(); i++){//Recorremos los datos
-                            JSONObject jsonObject = jsonArray.getJSONObject(i);
-                            usuario = jsonObject.getString("username");
-                            password = jsonObject.getString("password");
+                        for (int i = 0; i < jsonArray.length(); i++){//Recorremos los datos
+                            JSONObject jsonObjectInside = jsonArray.getJSONObject(i);
+                            usuario = jsonObjectInside.getString("username");
+                            password = jsonObjectInside.getString("pass");
                         }
                         if (usuario!=null){ //si el usuario es diferente de nulo osea contiene datos
                             configurar_envio();//Procedemos a configurar el envio para luego enviar el correo
@@ -141,18 +142,18 @@ public class recuperar extends AppCompatActivity {
         //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo
         para = destinatario.getText().toString();
         asunto = "Informacion de usuario y contrasenia";
-        mensaje = "Usuario : "+usuario+"\n"+"Contraseña : "+password;
+        mensaje = "Usuario : "+usuario+"\n"+ "Contraseña : "+password;
 
         //creamos las propiedades
         Properties properties = new Properties ();
 
         //configurando propiedades para email
         //si vamos a utilizar otro servidor tnemos que cambiar los valores
-        properties.setProperty("mail.smtp.host", "smtp.gmail.com");//host
-        properties.setProperty("mail.smtp.starttls.enable", "true");//Habilitar starttlls de smtp de correo
-        properties.setProperty("mail.smtp.port", "465");//puerto
-        properties.setProperty("mail.smtp.user", "castellanos.xperta@gmail.com");//correo de emisor
-        properties.setProperty("mail.smtp.auth", "true");//Autorizacion de envio
+        properties.put("mail.smtp.host", "smtp.gmail.com");//host
+        properties.put("mail.smtp.starttls.enable", "true");//Habilitar starttlls de smtp de correo
+        properties.put("mail.smtp.port", "25");//puerto
+        properties.put("mail.smtp.user", "RunnighnHondu@gmail.com");//correo de emisor
+        properties.put("mail.smtp.auth", "true");//Autorizacion de envio
 
         //STARTTLS es una extencion a los protocolos de comunicacion de texto plano,
         //que ofrese una forma de mejorar desde una conexion de exto plano a una conexion cifrada,
@@ -162,7 +163,7 @@ public class recuperar extends AppCompatActivity {
         session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("castellanos.xperta@gmail.com", "Caste28.");
+                return new PasswordAuthentication("RunnighnHondu@gmail.com", "Hondras12.");
             }
         });
         session.setDebug(true);//Esto es para depurar una vez funcione bien lo podemos quitar
@@ -176,21 +177,24 @@ public class recuperar extends AppCompatActivity {
 
     }
     class enviar_correo extends AsyncTask<String, Void, String>{
+
+
         @Override
-        protected String doInBackground(String... params) {
+        protected String doInBackground(String... strings) {
             try {
                 //Creando objeto MimeMessage
                 MimeMessage message = new MimeMessage(session);
                 //Configuracion de la direccion del remitente
-                message.setFrom(new InternetAddress("castellanos.xperta@gmail.com"));
+                message.setFrom(new InternetAddress("RunnighnHondu@gmail.com"));
                 //Anadimos el receptor
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
+                message.addRecipient(Message.RecipientType.TO,
+                        new InternetAddress(para));
                 message.setSubject(asunto);
                 message.setText(mensaje);
 
                 //lo enviamos
                 Transport t = session.getTransport("smtp");
-                t.connect("castellanos.xperta@gmail.com","Caste28.");
+                t.connect("RunnighnHondu@gmail.com","Hondras12.");
                 t.sendMessage(message, message.getAllRecipients());
 
                 //cierre

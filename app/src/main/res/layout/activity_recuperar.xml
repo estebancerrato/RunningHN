@@ -50,10 +50,4 @@
         app:backgroundTint="#90773DEA"
         />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="600dp"
-        android:layout_height="wrap_content" />
 </RelativeLayout>
