@@ -4,7 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_main2.xml" value="0.22056159420289856" />
+        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_principal.xml" value="0.12552083333333333" />
         <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_registrar.xml" value="0.27291666666666664" />
+        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/fragment_dashboard.xml" value="0.22056159420289856" />
+        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/fragment_home.xml" value="0.27291666666666664" />
+        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/menu/menu.xml" value="0.22" />
         <entry key="..\:/Users/caste/AndroidStudioProjects/RunningHN1.1/app/src/main/res/layout/activity_login.xml" value="0.1105072463768116" />
         <entry key="..\:/Users/caste/AndroidStudioProjects/RunningHN1.1/app/src/main/res/layout/activity_recuperar.xml" value="0.1105072463768116" />
         <entry key="..\:/Users/caste/AndroidStudioProjects/RunningHN1.1/app/src/main/res/layout/activity_registrar.xml" value="0.1105072463768116" />
