@@ -79,61 +79,22 @@ public class ActivityLogin extends AppCompatActivity {
         });
 
 //======================PERSISTENCIA DE DATOS=========================================//
-        if (!txtcorreo.getText().toString().isEmpty() || !txtcontrasenia.getText().toString().isEmpty()){
-            cargarDatosGuardados();
-        }
-
-
-
-        Recordar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loguearCheckbox(view);
-            }
-        });
-
-
-
-    }
-
-    private void cargarDatosGuardados() {
-        mSharedPrefs = getSharedPreferences("credencales",Context.MODE_PRIVATE);//Abre el archivo credenciales sin necedidad de volver a crearlo.
-
-        //se crea variable con la preferencias y le asignamos el identificador
-        String user = mSharedPrefs.getString("usuario","No existe informacion");
-        String pass = mSharedPrefs.getString("password","No existe informacion");
-
-        //txtcorreo.setText(user);
-        //txtcontrasenia.setText(pass);
-
-///===========INICION AUTOMATICO===========================//
-        if (user!="" && pass!=""){
-            loginUsuario(user,pass);
-        }else {
-            Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //======================PERSISTENCIA DE DATOS=========================================//
-    public void loguearCheckbox(View v) {
-        String s = "Estado: " + (Recordar.isChecked() ? "Datos Guardados" : "");
-        Toast.makeText(this, s, Toast.LENGTH_LONG).show();
-
-        mSharedPrefs = getSharedPreferences("credencales",Context.MODE_PRIVATE);
-
-        String user = txtcorreo.getText().toString();
-        String pass = txtcontrasenia.getText().toString();
-
-        SharedPreferences.Editor editor = mSharedPrefs.edit();
-        editor.putString("usuario",user);
-        editor.putString("password",pass);
-
+        mSharedPrefs = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
+        String user = mSharedPrefs.getString("usuario","");
+        String pass = mSharedPrefs.getString("password","");
         txtcorreo.setText(user);
         txtcontrasenia.setText(pass);
 
-        editor.commit();
-    }
+        if (txtcorreo.getText().length() == 0 || txtcontrasenia.getText().length() ==0){
+            Toast.makeText(getApplicationContext(), "Bienvenido ", Toast.LENGTH_SHORT).show();
+        }else {
+            Recordar.setChecked(true);
+            loginUsuario(user, pass);
+        }
 
+
+
+    }
 
     private void loginUsuario(String correo, String clave) {
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -147,6 +108,20 @@ public class ActivityLogin extends AppCompatActivity {
                     try {
 
                         if (response.getString("mensaje").toString().equals("login exitoso")){
+                            mSharedPrefs = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = mSharedPrefs.edit();
+                            if (Recordar.isChecked()){
+                                String user = txtcorreo.getText().toString();
+                                String pass = txtcontrasenia.getText().toString();
+                                editor.putString("usuario",user);
+                                editor.putString("password",pass);
+                                editor.commit();
+                            }else{
+                                editor.putString("usuario","");
+                                editor.putString("password","");
+                                editor.commit();
+                            }
+
                             Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
