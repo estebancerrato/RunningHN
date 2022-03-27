@@ -20,7 +20,9 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Usuario:" />
+
+        android:text="Usuario:"
+        />
 
     <EditText
         android:id="@+id/altxtUser"

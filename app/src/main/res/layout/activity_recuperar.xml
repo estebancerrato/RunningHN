@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradiants"
     tools:context=".recuperar">
 
     <TextView
@@ -15,10 +16,23 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="Recuperar pass"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/logorun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/imagenlogo"
+
+        />
 
     <EditText
         android:id="@+id/txtrecuperar"
@@ -26,10 +40,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Anuncio"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="69dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#903D7CEA"
+        android:background="@drawable/estilos2"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
         android:drawablePadding="20dp"
         android:hint="Correo"
         android:padding="20dp"
@@ -45,9 +60,18 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/stilos"
+        android:drawableLeft="@drawable/ic_baseline_send_24"
+        android:paddingEnd="30dp"
+        android:padding="20dp"
         android:text="Enviar"
-        app:backgroundTint="#90773DEA"
-        />
+
+
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
 </RelativeLayout>
