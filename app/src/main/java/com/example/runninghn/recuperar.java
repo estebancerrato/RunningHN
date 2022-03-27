@@ -41,9 +41,9 @@ public class recuperar extends Activity {
     EditText destinatario; //Ingreso del correo a enviar
     Button enviar; //Boton para enviar el correo
     String para, asunto, mensaje;//Para datos del mensaje
-    String usuario=null, password=null;
+    String usuario=null, password=null, nombrecompleto=null;
     //Variable que contiene la URL
-    private static final String URL_CONTRASENIA = "https://ventaswc.000webhostapp.com/index.php";
+    private static final String URL_CONTRASENIA = "http://transportweb2.online/API/recuperar_clave.php";
 
 
     @Override
@@ -110,8 +110,9 @@ public class recuperar extends Activity {
                         final JSONArray jsonArray = new JSONArray(new String(responseBody)); //decodificamos el Json que nos viene del servidor
                         for (int i = 0; i < jsonArray.length(); i++){//Recorremos los datos
                             JSONObject jsonObjectInside = jsonArray.getJSONObject(i);
-                            usuario = jsonObjectInside.getString("username");
-                            password = jsonObjectInside.getString("pass");
+                            usuario = jsonObjectInside.getString("email");
+                            password = jsonObjectInside.getString("clave");
+                            nombrecompleto = jsonObjectInside.getString("nombrecompleto");
                         }
                         if (usuario!=null){ //si el usuario es diferente de nulo osea contiene datos
                             configurar_envio();//Procedemos a configurar el envio para luego enviar el correo
@@ -141,8 +142,8 @@ public class recuperar extends Activity {
     public void configurar_envio(){
         //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo
         para = destinatario.getText().toString();
-        asunto = "Informacion de usuario y contrasenia";
-        mensaje = "Usuario : "+usuario+"\n"+ "Contraseña : "+password;
+        asunto = "Recuperacion de contraseña - RUNNING HN";
+        mensaje = "Hola "+nombrecompleto+", \n"+"Su usuario es: "+usuario+"\n"+ "Su contraseña es: "+password;
 
         //creamos las propiedades
         Properties properties = new Properties ();

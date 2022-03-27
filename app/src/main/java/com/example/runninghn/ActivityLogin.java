@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 public class ActivityLogin extends AppCompatActivity {
     Button btnIngresar, btnRegistrarse;
     EditText txtcorreo, txtcontrasenia;
+    TextView btnRecuperarClave;
     CheckBox Recordar;
     final Context context = this;
 
@@ -48,6 +50,15 @@ public class ActivityLogin extends AppCompatActivity {
         txtcorreo = (EditText) findViewById(R.id.altxtUser);
         txtcontrasenia = (EditText) findViewById(R.id.altxtPass);
         Recordar = (CheckBox) findViewById(R.id.alckRecordar);
+        btnRecuperarClave = (TextView) findViewById(R.id.olvidastepass);
+
+        btnRecuperarClave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),recuperar.class);
+                startActivity(intent);
+            }
+        });
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +77,13 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//======================PERSISTENCIA DE DATOS=========================================//
 
-        cargarDatosGuardados();
+//======================PERSISTENCIA DE DATOS=========================================//
+        if (!txtcorreo.getText().toString().isEmpty() || !txtcontrasenia.getText().toString().isEmpty()){
+            cargarDatosGuardados();
+        }
+
+
 
         Recordar.setOnClickListener(new View.OnClickListener() {
             @Override
