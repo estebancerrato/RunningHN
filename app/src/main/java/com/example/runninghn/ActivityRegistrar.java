@@ -7,16 +7,23 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,10 +50,24 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 public class ActivityRegistrar extends AppCompatActivity {
+    Session session = null; //Inicio de session para autenticar usuario y password
+    ProgressDialog pdialog = null; //dialogo del proceso
+    String para, asunto, mensaje;//Para datos del mensaje
+
     EditText nombres, apellidos, telefono, correo, contrasenia1, contrasenia2, fechaNac, peso, altura;
     Spinner cmbpais;
     Button btnguardar,btnTomaFoto,btnGaleria;
@@ -59,6 +80,8 @@ public class ActivityRegistrar extends AppCompatActivity {
     ArrayAdapter adp;
     int codigoPaisSeleccionado;
 
+    int codigo;
+
 
     Intent intent;
 
@@ -66,6 +89,7 @@ public class ActivityRegistrar extends AppCompatActivity {
     static final int PETICION_ACCESO_CAM = 100;
     static final int TAKE_PIC_REQUEST = 101;
     Bitmap imagen;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,12 +112,48 @@ public class ActivityRegistrar extends AppCompatActivity {
 
         intent = new Intent(getApplicationContext(),ActivityRegistrar.class);//para obtener el contacto seleccionado mas adelante
 
+
+        Random random = new Random();
+        codigo = random.nextInt(8999)+1000;
+//        Toast.makeText(getApplicationContext(),"codigo: "+codigo,Toast.LENGTH_SHORT).show();
+
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //validarContrasenia();
-                //RegistrarUsuario();
-                validarDatos();
+                configurar_envio();
+                final EditText taskEditText = new EditText(context);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setTitle("Verifique su correo");
+                alertDialogBuilder
+                        .setMessage("hemos enviado un correo con su codigo de verificación")
+                        .setView(taskEditText)
+                        .setCancelable(true)
+                        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                int task = Integer.valueOf(taskEditText.getText().toString());
+                                if (codigo == task){
+                                    validarDatos();
+                                    Toast.makeText(getApplicationContext(),"codigo valido",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Toast.makeText(getApplicationContext(),"codigo invalido",Toast.LENGTH_SHORT).show();
+                                }
+
+                                //validarContrasenia();
+                                //RegistrarUsuario();
+                                //
+
+                            }
+                        }
+
+                        );
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+
+
+
+
             }
         });
 
@@ -138,6 +198,8 @@ public class ActivityRegistrar extends AppCompatActivity {
         });
 
     }
+
+
 
     private void validarDatos(){
         if (Foto.getDrawable() == null){
@@ -364,6 +426,82 @@ public class ActivityRegistrar extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
+    }
+
+    //--------------------------VALIDAR CORREO-----
+    public void configurar_envio(){
+        //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo
+        para = correo.getText().toString();
+        asunto = "Verificación de correo - RUNNING HN";
+        mensaje = "Hola "+nombres.getText().toString()+" "+apellidos.getText().toString()+", \n"+"Su codigo de verificacion es: "+codigo;
+
+        //creamos las propiedades
+        Properties properties = new Properties ();
+
+        //configurando propiedades para email
+        //si vamos a utilizar otro servidor tnemos que cambiar los valores
+        properties.put("mail.smtp.host", "smtp.gmail.com");//host
+        properties.put("mail.smtp.starttls.enable", "true");//Habilitar starttlls de smtp de correo
+        properties.put("mail.smtp.port", "25");//puerto
+        properties.put("mail.smtp.user", "RunnighnHondu@gmail.com");//correo de emisor
+        properties.put("mail.smtp.auth", "true");//Autorizacion de envio
+
+        //STARTTLS es una extencion a los protocolos de comunicacion de texto plano,
+        //que ofrese una forma de mejorar desde una conexion de exto plano a una conexion cifrada,
+        //(TLS O SSL) en lugar de utilizar un puerto diferente para la comunicacion cifrada.
+
+        //Creamos la nueva sesion
+        session = Session.getDefaultInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("RunnighnHondu@gmail.com", "Hondras12.");
+            }
+        });
+        session.setDebug(true);//Esto es para depurar una vez funcione bien lo podemos quitar
+
+        pdialog = ProgressDialog.show(this, "","Enviando correo", true);
+
+
+        ActivityRegistrar.enviar_correo task = new ActivityRegistrar.enviar_correo(); //llamamos a la clase enviar correo
+        task.execute();
+
+
+    }
+    class enviar_correo extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                //Creando objeto MimeMessage
+                MimeMessage message = new MimeMessage(session);
+                //Configuracion de la direccion del remitente
+                message.setFrom(new InternetAddress("RunnighnHondu@gmail.com"));
+                //Anadimos el receptor
+                message.addRecipient(Message.RecipientType.TO,
+                        new InternetAddress(para));
+                message.setSubject(asunto);
+                message.setText(mensaje);
+
+                //lo enviamos
+                Transport t = session.getTransport("smtp");
+                t.connect("RunnighnHondu@gmail.com","Hondras12.");
+                t.sendMessage(message, message.getAllRecipients());
+
+                //cierre
+                t.close();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(String result){
+            pdialog.dismiss();
+            Toast.makeText(getApplicationContext(),"Mensaje enviado", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
