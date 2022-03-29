@@ -427,7 +427,7 @@ public class ActivityRegistrar extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
-
+    //hola mundo adios xD
     //--------------------------VALIDAR CORREO-----
     public void configurar_envio(){
         //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo
