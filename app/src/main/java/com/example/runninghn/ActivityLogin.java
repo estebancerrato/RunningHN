@@ -125,7 +125,7 @@ public class ActivityLogin extends AppCompatActivity {
                             }
 
                             Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
                             startActivity(intent);
                             finish();
                         }else{

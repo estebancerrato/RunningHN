@@ -21,7 +21,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.location.ActivityTransition;
+import com.google.android.gms.location.DetectedActivity;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 public class ActivityUsuario extends AppCompatActivity {
@@ -117,6 +122,7 @@ public class ActivityUsuario extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 
 
 
