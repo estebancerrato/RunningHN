@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -54,7 +55,7 @@ public class ActivityUsuario extends AppCompatActivity {
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                    displayMapDraving();
 
                 try {
 
@@ -88,6 +89,33 @@ public class ActivityUsuario extends AppCompatActivity {
         //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
 
         Toast.makeText(getApplicationContext(), "Prueba ", Toast.LENGTH_SHORT).show();
+    }
+
+    private void displayMapDraving() {
+        try {
+            double latitude = Double.parseDouble(latitud);
+            double longitude = Double.parseDouble(longitud);
+            /*
+                mode = 1  AUTOMOVIL
+                mode = d TREN
+                mode = b BICICLETA
+                mode = W CAMINANDO
+                mode = l MOTOCICLETA
+            */
+            Uri uri = Uri.parse("google.navigation:q="+latitude+","+longitude+"&mode=w");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setPackage("com.google.android.apps.maps");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 
 

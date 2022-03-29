@@ -147,6 +147,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                     }
 
                    // adp = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_checked, arrayUsuario);
+
                     ArrayAdapter<String> adp = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_checked, arrayUsuario);
                     listAmigos.setAdapter(adp);
 
