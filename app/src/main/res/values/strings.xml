@@ -5,4 +5,5 @@
     <string name="title_dashboard">Corredores</string>
     <string name="title_notifications">Progreso</string>
     <string name="title_activity_maps_nueva_carrera">MapsNuevaCarrera</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

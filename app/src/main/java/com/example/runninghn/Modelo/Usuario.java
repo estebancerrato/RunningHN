@@ -15,6 +15,10 @@ public class Usuario
     public String foto;
 
     public Usuario(int codigo_usuario, String nombres, String apellidos, String foto) {
+        this.nombres = nombres;
+        this.id = codigo_usuario;
+        this.apellidos = apellidos;
+        this.foto = foto;
     }
 
     public Usuario(int id, String nombres, String apellidos, int telefono, String correo, String contraseña, String peso, String altura, String latitud, String longitud, String foto) {

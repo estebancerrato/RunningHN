@@ -87,6 +87,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                                 RowUsuario.getString("foto"));
 
                         //usuarioList.add(usuario);
+
                         arrayUsuario.add(usuario.getNombres()+' '+usuario.getApellidos());
                     }
 
