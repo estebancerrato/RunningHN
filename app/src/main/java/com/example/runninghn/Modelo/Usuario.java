@@ -14,7 +14,7 @@ public class Usuario
     public String Longitud;
     public String foto;
 
-    public Usuario() {
+    public Usuario(int codigo_usuario, String nombres, String apellidos, String foto) {
     }
 
     public Usuario(int id, String nombres, String apellidos, int telefono, String correo, String contraseña, String peso, String altura, String latitud, String longitud, String foto) {

@@ -11,6 +11,8 @@ public class RestApiMethods {
     private static final String setUpdate = "/APIexam/actualizarcontacto.php";
     private static final String CreateUsuario = "/API/crearusuario.php";
     private static final String listaPaises = "/API/listapaises.php";
+    private static final String listaUsuarioPaise = "/API/listasingleusuariopais.php";
+
 
     //metodo get
     public static final String EndPointGetContact = StringHttp + ipaddress + GetEmple;
@@ -20,6 +22,7 @@ public class RestApiMethods {
     public static final String EndPointSetUpdateContact = StringHttp + ipaddress + setUpdate;
     public static final String EndPointCreateUsuario = StringHttp + ipaddress + CreateUsuario;
     public static final String EndPointListarPaises = StringHttp + ipaddress + listaPaises;
+    public static final String EndPointListarUsuarioPaise = StringHttp + ipaddress + listaUsuarioPaise;
 }
 
 
