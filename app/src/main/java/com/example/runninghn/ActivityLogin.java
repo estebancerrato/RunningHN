@@ -33,7 +33,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 public class ActivityLogin extends AppCompatActivity {
-    Button btnIngresar, btnRegistrarse;
+    //Button btnIngresar, btnRegistrarse; elimine el casteo y lo puse TextView
+    TextView btnIngresar, btnRegistrarse;
+
     EditText txtcorreo, txtcontrasenia;
     TextView btnRecuperarClave;
     CheckBox Recordar;
@@ -45,8 +47,8 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        btnIngresar = (Button) findViewById(R.id.albtnIngresar);
-        btnRegistrarse = (Button)findViewById(R.id.albtnRegistrar);
+        btnIngresar = findViewById(R.id.albtnIngresar);
+        btnRegistrarse = findViewById(R.id.albtnRegistrar);
         txtcorreo = (EditText) findViewById(R.id.altxtUser);
         txtcontrasenia = (EditText) findViewById(R.id.altxtPass);
         Recordar = (CheckBox) findViewById(R.id.alckRecordar);

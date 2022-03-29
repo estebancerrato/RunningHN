@@ -129,21 +129,21 @@ public class ActivityRegistrar extends AppCompatActivity {
                         .setView(taskEditText)
                         .setCancelable(true)
                         .setPositiveButton("OK",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                int task = Integer.valueOf(taskEditText.getText().toString());
-                                if (codigo == task){
-                                    validarDatos();
-                                    Toast.makeText(getApplicationContext(),"codigo valido",Toast.LENGTH_SHORT).show();
-                                }else{
-                                    Toast.makeText(getApplicationContext(),"codigo invalido",Toast.LENGTH_SHORT).show();
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        int task = Integer.valueOf(taskEditText.getText().toString());
+                                        if (codigo == task){
+                                            validarDatos();
+                                            Toast.makeText(getApplicationContext(),"codigo valido",Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Toast.makeText(getApplicationContext(),"codigo invalido",Toast.LENGTH_SHORT).show();
+                                        }
+
+                                        //validarContrasenia();
+                                        //RegistrarUsuario();
+                                        //
+
+                                    }
                                 }
-
-                                //validarContrasenia();
-                                //RegistrarUsuario();
-                                //
-
-                            }
-                        }
 
                         );
 
@@ -427,7 +427,7 @@ public class ActivityRegistrar extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
-
+    //hola mundo adios xD
     //--------------------------VALIDAR CORREO-----
     public void configurar_envio(){
         //Almacenamos los datos obtenido en sus respectivas variables para el envio del correo

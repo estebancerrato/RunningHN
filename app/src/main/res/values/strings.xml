@@ -1,9 +1,13 @@
 <resources>
-    <string name="app_name">RunningHN</string>
+    <string name="app_name">Running HN</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Perfil</string>
     <string name="title_dashboard">Corredores</string>
     <string name="title_notifications">Progreso</string>
     <string name="title_activity_maps_nueva_carrera">MapsNuevaCarrera</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="anuncio1">Running HN es la mejor app para ponerte en forma mientras corres.\nCon seguimiento satelital no perderás el trayecto recorrido.</string>
+    <string name="anuncio2">Realiza seguimiento de tus actividades y revisa tus calorías, pasos y distancia recorrida diariamente.</string>
+    <string name="anuncio3">Interactúe con otros miembros de la comunidad de Runnign HN para mantenerse motivado y enfocado mientras trabajas hacia sus objetivos.</string>
+    <string name="anuncio4">Compite contra ti mismo y mejora tus tiempos en cada carrera.\n¡Sal a correr!</string>
 </resources>
