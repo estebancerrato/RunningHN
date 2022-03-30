@@ -13,9 +13,14 @@
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2985" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2985" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_agregar_amigos.xml" value="0.33" />
-        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_login.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio1.xml" value="0.3625" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio2.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio3.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio4.xml" value="0.12" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_main.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_main2.xml" value="0.33" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_maps.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_maps_nueva_carrera.xml" value="0.25" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_perfil.xml" value="0.33" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_principal.xml" value="0.3582427536231884" />
@@ -48,7 +53,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.3582427536231884" />
+        <option name="scale" value="0.12" />
       </ProjectState>
     </option>
   </component>

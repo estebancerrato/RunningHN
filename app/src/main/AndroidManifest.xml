@@ -109,10 +109,7 @@
         <activity
             android:name=".ActivityLogin"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
         <activity
@@ -130,6 +127,20 @@
 
 
         </activity>
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+
+
+
     </application>
 
 </manifest>
