@@ -19,17 +19,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.location.ActivityTransition;
-import com.google.android.gms.location.DetectedActivity;
+import com.example.runninghn.databinding.ActivityMapsBinding;
+import com.google.android.gms.maps.GoogleMap;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-public class ActivityUsuario extends AppCompatActivity {
+public class ActivityNuevaCarrera extends AppCompatActivity{
 
 
     Button btnComenzar;
@@ -37,6 +37,9 @@ public class ActivityUsuario extends AppCompatActivity {
 
     public static String latitud = "";
     public static String longitud = "";
+    GoogleMap mMap;
+    private ActivityMapsBinding binding;
+
 
 
     @Override
@@ -44,11 +47,17 @@ public class ActivityUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
 
+
+
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
         } else {
 
         }
+
+
+
 
         btnComenzar = (Button) findViewById(R.id.btnComenzar);
 
@@ -60,7 +69,7 @@ public class ActivityUsuario extends AppCompatActivity {
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    displayMapDraving();
+
 
                 try {
 
@@ -76,53 +85,9 @@ public class ActivityUsuario extends AppCompatActivity {
             locationStart();
         }
         //mando a llamar el metodo ejecutar y cada 10 segundos se encargara de setear la nueva ubicacion
-        ejecutar();
+
 
     }
-
-    private void ejecutar(){
-        final Handler handler= new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                metodoEjecutar();//llamamos nuestro metodo
-                handler.postDelayed(this,10000);//se ejecutara cada 10 segundos
-            }
-        },5000);//empezara a ejecutarse después de 5 milisegundos
-    }
-    private void metodoEjecutar() {
-        //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
-
-        Toast.makeText(getApplicationContext(), "Prueba ", Toast.LENGTH_SHORT).show();
-    }
-
-    private void displayMapDraving() {
-        try {
-            double latitude = Double.parseDouble(latitud);
-            double longitude = Double.parseDouble(longitud);
-            /*
-                mode = 1  AUTOMOVIL
-                mode = d TREN
-                mode = b BICICLETA
-                mode = W CAMINANDO
-                mode = l MOTOCICLETA
-            */
-            Uri uri = Uri.parse("google.navigation:q="+latitude+","+longitude+"&mode=w");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            intent.setPackage("com.google.android.apps.maps");
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
-            }
-        } catch (Exception e) {
-            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-    }
-
 
 
 
@@ -153,10 +118,11 @@ public class ActivityUsuario extends AppCompatActivity {
     }
 
 
-    public class Localizacion implements LocationListener {
-        ActivityUsuario mainActivity;
 
-        public void setMainActivity(ActivityUsuario mainActivity) {
+    public class Localizacion implements LocationListener {
+        ActivityNuevaCarrera mainActivity;
+
+        public void setMainActivity(ActivityNuevaCarrera mainActivity) {
             this.mainActivity = mainActivity;
         }
 
@@ -167,8 +133,8 @@ public class ActivityUsuario extends AppCompatActivity {
 
             loc.getLatitude();
             loc.getLongitude();
-            ActivityUsuario.setLatitud(loc.getLatitude()+"");
-            ActivityUsuario.setLongitud(loc.getLongitude()+"");
+            ActivityNuevaCarrera.setLatitud(loc.getLatitude()+"");
+            ActivityNuevaCarrera.setLongitud(loc.getLongitude()+"");
             txtLat.setText(loc.getLatitude()+"");
             txtLon.setText(loc.getLongitude()+"");
             this.mainActivity.setLocation(loc);
@@ -206,10 +172,17 @@ public class ActivityUsuario extends AppCompatActivity {
 
 
     public static void setLatitud(String latitud) {
-        ActivityUsuario.latitud = latitud;
+        ActivityNuevaCarrera.latitud = latitud;
     }
     public static void setLongitud(String longitud) {
-        ActivityUsuario.longitud = longitud;
+        ActivityNuevaCarrera.longitud = longitud;
+    }
+
+    public static Double getlatitud(){
+        return Double.valueOf(latitud);
+    }
+    public static Double getLongitud(){
+        return Double.valueOf(longitud);
     }
 
 

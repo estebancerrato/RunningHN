@@ -73,9 +73,7 @@
             android:exported="true">
 
         </activity>
-        <activity
-            android:name=".ActivityUsuario"
-            android:exported="true"></activity>
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -130,6 +128,13 @@
 
         <activity
             android:name=".MapsActivity"
+            android:exported="true">
+
+
+
+        </activity>
+        <activity
+            android:name=".ActivityNuevaCarrera"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
