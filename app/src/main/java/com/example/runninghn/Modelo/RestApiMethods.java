@@ -23,6 +23,8 @@ public class RestApiMethods {
     public static final String EndPointCreateUsuario = StringHttp + ipaddress + CreateUsuario;
     public static final String EndPointListarPaises = StringHttp + ipaddress + listaPaises;
     public static final String EndPointListarUsuarioPaise = StringHttp + ipaddress + listaUsuarioPaise;
+
+    String prueba = "http://transportweb2.online/API/listasingleusuariopais.php";
 }
 
 

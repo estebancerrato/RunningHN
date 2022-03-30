@@ -21,6 +21,7 @@ public class Usuario
         this.foto = foto;
     }
 
+
     public Usuario(int id, String nombres, String apellidos, int telefono, String correo, String contraseña, String peso, String altura, String latitud, String longitud, String foto) {
         this.id = id;
         this.nombres = nombres;
