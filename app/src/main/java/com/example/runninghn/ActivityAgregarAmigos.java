@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -41,10 +43,8 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 
     Usuario usuario;
     TextView txtnombreCompleto;
-
-
-
     AdaptadorUsuario adaptador;
+
 
     private final ArrayList<Usuario> listaUsuarios = new ArrayList<>();
 
@@ -56,6 +56,8 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         listViewCustomAdapter = findViewById(R.id.listaAmigos);
         adaptador = new AdaptadorUsuario(this);;
         listarUsuarios();
+
+
 
     }
 
@@ -69,13 +71,12 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray usuarioArray = response.getJSONArray( "usuario");
+                    JSONArray usuarioArray = response.getJSONArray("usuario");
 
                     listaUsuarios.clear();//limpiar la lista de usuario antes de comenzar a listar
-                    for (int i=0; i<usuarioArray.length(); i++)
-                    {
+                    for (int i = 0; i < usuarioArray.length(); i++) {
                         JSONObject RowUsuario = usuarioArray.getJSONObject(i);
-                        usuario = new Usuario(  RowUsuario.getInt("codigo_usuario"),
+                        usuario = new Usuario(RowUsuario.getInt("codigo_usuario"),
                                 RowUsuario.getString("nombres"),
                                 RowUsuario.getString("apellidos"),
                                 RowUsuario.getString("foto"));
@@ -118,6 +119,21 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 
             txtnombreCompleto = item.findViewById(R.id.txtNombreAmigo);
             txtnombreCompleto.setText(listaUsuarios.get(position).getNombres()+" "+listaUsuarios.get(position).getApellidos());
+
+            CheckBox cBox=(CheckBox)item.findViewById(R.id.checkBox);
+
+            cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (cBox.isChecked()){
+                        Toast.makeText(getApplicationContext(),"Activado", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Desactivado", Toast.LENGTH_SHORT).show();
+                    }
+
+                    Toast.makeText(getApplicationContext(),"id: "+listaUsuarios.get(position).getId(), Toast.LENGTH_SHORT).show();
+                }
+            });
 
             return(item);
         }
