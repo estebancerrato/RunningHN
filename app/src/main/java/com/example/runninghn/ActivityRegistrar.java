@@ -397,6 +397,9 @@ public class ActivityRegistrar extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     Toast.makeText(getApplicationContext(), "String Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),ActivityLogin.class);
+                    startActivity(intent);
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

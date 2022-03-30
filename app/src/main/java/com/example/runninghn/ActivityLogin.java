@@ -41,7 +41,7 @@ public class ActivityLogin extends AppCompatActivity {
     CheckBox Recordar;
     final Context context = this;
 
-    private SharedPreferences mSharedPrefs;
+    SharedPreferences mSharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +125,8 @@ public class ActivityLogin extends AppCompatActivity {
                             }
 
                             Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
+                            Intent intent = new Intent(getApplicationContext(),ActivityAgregarAmigos.class);
+                            intent.putExtra("correo", txtcorreo.getText().toString());
                             startActivity(intent);
                             finish();
                         }else{

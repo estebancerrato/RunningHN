@@ -2,6 +2,11 @@ package com.example.runninghn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -12,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,8 +51,11 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
     TextView txtnombreCompleto;
     AdaptadorUsuario adaptador;
 
-
     private final ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+
+    final Context context = this;
+
+
 
 
     @Override
@@ -54,17 +63,16 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_amigos);
         listViewCustomAdapter = findViewById(R.id.listaAmigos);
-        adaptador = new AdaptadorUsuario(this);;
-        listarUsuarios();
+        adaptador = new AdaptadorUsuario(this);
 
-
-
+        String email = getIntent().getStringExtra("correo");
+        listarUsuarios(email);
     }
-
-    private void listarUsuarios() {
+//consulta en la base de datos el pais del correo que se logueo, luego manda a llamar el listado de personas de ese pais
+    private void listarUsuarios(String email) {
         RequestQueue queue = Volley.newRequestQueue(this);
         HashMap<String, String> parametros = new HashMap<>();
-        parametros.put("email", "Jvarela@gpsandsecurity.com");
+        parametros.put("email", email);
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointListarUsuarioPaise,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
@@ -100,6 +108,36 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 
         queue.add(jsonObjectRequest);
     }
+//--agrega como amigo segun el codigo de usuario del listado.
+    private void agregarAmigo(int codigoUsuario, int codigoAmigo) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        HashMap<String, String> parametros = new HashMap<>();
+        parametros.put("codigo_usuario", codigoUsuario+"");
+        parametros.put("codigo_amigo", codigoAmigo+"");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointListarUsuarioPaise,
+                new JSONObject(parametros), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("mensaje").toString().equals("Amigo agregado")){
+
+                        Toast.makeText(getApplicationContext(), "Se agrego a tu lista de amigos", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
 
     class AdaptadorUsuario extends ArrayAdapter<Usuario> {
 
@@ -118,14 +156,38 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
             mostrarFoto(listaUsuarios.get(position).getFoto(),imgAmigo);
 
             txtnombreCompleto = item.findViewById(R.id.txtNombreAmigo);
-            txtnombreCompleto.setText(listaUsuarios.get(position).getNombres()+" "+listaUsuarios.get(position).getApellidos());
+            String nombrecompleto= listaUsuarios.get(position).getNombres()+" "+listaUsuarios.get(position).getApellidos();
+            txtnombreCompleto.setText(nombrecompleto);
 
             CheckBox cBox=(CheckBox)item.findViewById(R.id.checkBox);
-
             cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (cBox.isChecked()){
+
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                        alertDialogBuilder.setTitle("Añadir como amigo");
+                        alertDialogBuilder
+                                .setMessage("¿Desea añadir de amigo a "+nombrecompleto+" ?")
+                                .setCancelable(false)
+                                .setPositiveButton("Si",new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //falta obtener el codigo del usuario que se logueo
+                                                //agregarAmigo();
+
+                                            }
+                                })
+                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        cBox.setChecked(false);
+                                        dialog.cancel();
+                                    }
+                                });
+
+
+                        // create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
                         Toast.makeText(getApplicationContext(),"Activado", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getApplicationContext(),"Desactivado", Toast.LENGTH_SHORT).show();

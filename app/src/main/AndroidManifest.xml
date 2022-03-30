@@ -71,11 +71,7 @@
         <activity
             android:name=".ActivityAgregarAmigos"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ActivityUsuario"
@@ -104,13 +100,21 @@
             android:exported="true" />
         <activity
             android:name=".ActivityRegistrar"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".ActivityAnuncio4"
             android:exported="false" />
         <activity
             android:name=".ActivityLogin"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".ActivityAnuncio1"
             android:exported="true" />
@@ -122,7 +126,10 @@
             android:exported="true" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true"></activity>
+            android:exported="true">
+
+
+        </activity>
     </application>
 
 </manifest>

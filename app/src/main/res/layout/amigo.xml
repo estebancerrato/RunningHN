@@ -26,6 +26,6 @@
         android:layout_width="76dp"
         android:layout_height="56dp"
         android:layout_weight="1"
-        android:button="@drawable/contacto" />
+        android:button="@drawable/ic_notifications_black_24dp" />
 
 </LinearLayout>
