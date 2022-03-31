@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ActivityLogin extends AppCompatActivity {
@@ -127,8 +128,7 @@ public class ActivityLogin extends AppCompatActivity {
                             }
 
                             Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
-                            intent.putExtra("correo", txtcorreo.getText().toString());
+                            Intent intent = new Intent(getApplicationContext(),ActivityAgregarAmigos.class);
                             startActivity(intent);
                             finish();
                         }else{
