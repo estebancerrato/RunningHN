@@ -112,7 +112,18 @@ public class ActivityLogin extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
 
-                        if (response.getString("mensaje").toString().equals("login exitoso")){
+                        JSONArray mensajeArray = response.getJSONArray("respuesta");
+                        String mensaje="";
+                        String codigo="";
+                        for (int i = 0; i < mensajeArray.length(); i++) {
+                            JSONObject RowMensaje = mensajeArray.getJSONObject(i);
+                            mensaje = RowMensaje.getString("mensaje");
+                            codigo = RowMensaje.getString("codigo_usuario");
+
+                            Toast.makeText(getApplicationContext(), "Codigo " + codigo, Toast.LENGTH_SHORT).show();
+                        }
+
+                        if (mensaje.equals("login exitoso")){
                             mSharedPrefs = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = mSharedPrefs.edit();
                             if (Recordar.isChecked()){
@@ -127,7 +138,8 @@ public class ActivityLogin extends AppCompatActivity {
                                 editor.commit();
                             }
 
-                            Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Response " + mensaje, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Codigo " + codigo, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),ActivityAgregarAmigos.class);
                             startActivity(intent);
                             finish();
