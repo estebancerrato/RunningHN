@@ -73,7 +73,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         HashMap<String, String> parametros = new HashMap<>();
         parametros.put("email", email);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointListarUsuarioPaise,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointListarAmigo,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -93,7 +93,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                     listViewCustomAdapter.setAdapter(adaptador);
 
                 }catch (JSONException ex){
-                    Toast.makeText(getApplicationContext(), "mensaje"+ex, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "No hay amigos disponible para su pais", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -11,6 +11,7 @@ public class RestApiMethods {
     private static final String CreateUsuario = "/API/crearusuario.php";
     private static final String listaPaises = "/API/listapaises.php";
     private static final String listaUsuarioPaise = "/API/listasingleusuariopais.php";
+    private static final String ListaAgregarAmigo = "/API/listaagregaramigos.php";
     private static final String agregarAmigo = "/API/crearamigo.php";
 
 
@@ -24,6 +25,8 @@ public class RestApiMethods {
     public static final String EndPointListarPaises = StringHttp + ipaddress + listaPaises;
     public static final String EndPointListarUsuarioPaise = StringHttp + ipaddress + listaUsuarioPaise;
     public static final String EndPointAgregarAmigo = StringHttp + ipaddress + agregarAmigo;
+    public static final String EndPointListarAmigo = StringHttp + ipaddress + ListaAgregarAmigo;
+
     public static String EndPointBuscarUsuario;
 
     public static  String correo = "";

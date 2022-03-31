@@ -139,7 +139,6 @@ public class ActivityLogin extends AppCompatActivity {
                             }
 
                             Toast.makeText(getApplicationContext(), "Response " + mensaje, Toast.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), "Codigo " + codigo, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),ActivityAgregarAmigos.class);
                             startActivity(intent);
                             finish();
