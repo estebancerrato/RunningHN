@@ -5,7 +5,8 @@ public class Usuario
     public int id;
     public String nombres;
     public String apellidos;
-    public int telefono;
+    public String fechaNac;
+    public String pais;
     public String correo;
     public String contraseña;
     public String peso;
@@ -21,12 +22,23 @@ public class Usuario
         this.foto = foto;
     }
 
-
-    public Usuario(int id, String nombres, String apellidos, int telefono, String correo, String contraseña, String peso, String altura, String latitud, String longitud, String foto) {
+    public Usuario(int id, String nombres, String apellidos, String fechaNac, String pais, String correo, String peso, String altura, String foto) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
-        this.telefono = telefono;
+        this.fechaNac = fechaNac;
+        this.pais = pais;
+        this.correo = correo;
+        this.peso = peso;
+        this.altura = altura;
+        this.foto = foto;
+    }
+
+    public Usuario(int id, String nombres, String apellidos, String correo, String contraseña, String peso, String altura, String latitud, String longitud, String foto) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+//        this.telefono = telefono;
         this.correo = correo;
         this.contraseña = contraseña;
         this.peso = peso;
@@ -65,13 +77,13 @@ public class Usuario
         this.apellidos = apellidos;
     }
 
-    public int getTelefono() {
+   /* public int getTelefono() {
         return telefono;
     }
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
-    }
+    }*/
 
     public String getCorreo() {
         return correo;
@@ -127,5 +139,21 @@ public class Usuario
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(String fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
     }
 }

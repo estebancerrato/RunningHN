@@ -67,7 +67,12 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".Activity_Perfil"
-            android:exported="true"></activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ActivityAgregarAmigos"
             android:exported="true">
@@ -136,11 +141,12 @@
         <activity
             android:name=".ActivityNuevaCarrera"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
+
+        </activity>
+        <activity
+            android:name=".Activity_Actualizar_Perfil"
+            android:exported="true">
         </activity>
 
 

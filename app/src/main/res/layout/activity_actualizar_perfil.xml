@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_Actualizar_Perfil">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/actubtnAtras"
+                    android:layout_width="83dp"
+                    android:layout_height="wrap_content"
+                    android:text="Atras" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/actuImgView"
+                android:layout_width="match_parent"
+                android:layout_height="178dp"
+                app:srcCompat="@drawable/contacto"
+                tools:srcCompat="@drawable/contacto" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/actuTomarFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="Abrir camara" />
+
+                <Button
+                    android:id="@+id/actugaleria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="Seleccionar Galeria" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lblnombres"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:text="Nombres" />
+
+            <EditText
+                android:id="@+id/actutxtnombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblapellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apellidos" />
+
+            <EditText
+                android:id="@+id/actutxtapellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/lblFechaNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha Nacimiento" />
+
+            <EditText
+                android:id="@+id/actuFechaNac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="dd-mm-yyy"
+                android:inputType="date" />
+
+            <TextView
+                android:id="@+id/lblPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pais" />
+
+            <Spinner
+                android:id="@+id/actucmbPais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Peso" />
+
+            <EditText
+                android:id="@+id/actuPeso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Altura" />
+
+            <EditText
+                android:id="@+id/actuAltura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberSigned|text" />
+
+            <Button
+                android:id="@+id/actbtnActualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Actualizar" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
