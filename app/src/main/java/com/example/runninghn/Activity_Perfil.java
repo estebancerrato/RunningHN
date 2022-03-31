@@ -64,12 +64,6 @@ String email;
         btnEditar = (Button) findViewById(R.id.perfilbtnEditar);
         btnAtras = (Button) findViewById(R.id.perbtnAtras);
 
-        Toast.makeText(getApplicationContext(),RestApiMethods.correo,Toast.LENGTH_SHORT).show();
-
-        /*=================TRAER EL USUARIO DEL ARCHIVO CREDENCIAL CON SHARPREFERENCES*/
-        SharedPreferences mSharedPrefs = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        String correo = mSharedPrefs.getString("usuario","");
-
         email = RestApiMethods.correo;
 
         listarUsuarios(email);
@@ -114,8 +108,9 @@ String email;
                                 RowUsuario.getString("nombres"),
                                 RowUsuario.getString("apellidos"),
                                 RowUsuario.getString("fecha_nac"),
+                                RowUsuario.getString("pais"),
+                                RowUsuario.getInt("codigo_pais"),
                                 RowUsuario.getString("email"),
-                                RowUsuario.getString("codigo_pais"),
                                 RowUsuario.getString("peso"),
                                 RowUsuario.getString("altura"),
                                 RowUsuario.getString("foto"));
@@ -123,6 +118,7 @@ String email;
                         txtnombre.setText(usuario.getNombres()+" "+usuario.getApellidos());
                         txtpeso.setText(usuario.getPeso());
                         txtaltu.setText(usuario.getAltura());
+                        txtpais.setText(usuario.getPais());
                         mostrarFoto(usuario.getFoto().toString());
 
                     }
@@ -150,7 +146,7 @@ String email;
         intent.putExtra("nombres", usuario.getNombres()+"");
         intent.putExtra("apellidos", usuario.getApellidos()+"");
         intent.putExtra("fechanac", usuario.getFechaNac()+"");
-        intent.putExtra("codigo_pais", usuario.getPais()+"");
+        intent.putExtra("codigo_pais", usuario.getCodigo_pais()+"");
         intent.putExtra("peso", usuario.getPeso()+"");
         intent.putExtra("altura", usuario.getAltura()+"");
         intent.putExtra("foto", usuario.getFoto()+"").toString();

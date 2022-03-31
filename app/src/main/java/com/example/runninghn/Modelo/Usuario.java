@@ -7,6 +7,7 @@ public class Usuario
     public String apellidos;
     public String fechaNac;
     public String pais;
+    public int codigo_pais;
     public String correo;
     public String contraseña;
     public String peso;
@@ -15,26 +16,28 @@ public class Usuario
     public String Longitud;
     public String foto;
 
-    public Usuario(int codigo_usuario, String nombres, String apellidos, String foto) {
+    public Usuario(int codigo_usuario, String nombres, String apellidos,String foto) {
         this.nombres = nombres;
         this.id = codigo_usuario;
         this.apellidos = apellidos;
         this.foto = foto;
+
     }
 
-    public Usuario(int id, String nombres, String apellidos, String fechaNac, String pais, String correo, String peso, String altura, String foto) {
+    public Usuario(int id, String nombres, String apellidos, String fechaNac, String pais, int codigo_pais, String correo, String peso, String altura, String foto) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.fechaNac = fechaNac;
         this.pais = pais;
+        this.codigo_pais = codigo_pais;
         this.correo = correo;
         this.peso = peso;
         this.altura = altura;
         this.foto = foto;
     }
 
-    public Usuario(int id, String nombres, String apellidos, String correo, String contraseña, String peso, String altura, String latitud, String longitud, String foto) {
+    public Usuario(int id, String nombres, String apellidos, String correo,String contraseña, String peso, String altura, String latitud, String longitud, String foto) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -52,6 +55,7 @@ public class Usuario
         this.correo = correo;
         this.contraseña = contraseña;
     }
+
 
     public int getId() {
         return id;
@@ -155,5 +159,13 @@ public class Usuario
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public int getCodigo_pais() {
+        return codigo_pais;
+    }
+
+    public void setCodigo_pais(int codigo_pais) {
+        this.codigo_pais = codigo_pais;
     }
 }
