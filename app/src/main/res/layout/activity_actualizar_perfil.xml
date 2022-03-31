@@ -89,18 +89,22 @@
                 android:layout_height="wrap_content"
                 android:text="Fecha Nacimiento" />
 
-            <EditText
-                android:id="@+id/actuFechaNac"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="dd-mm-yyy"
-                android:inputType="date" />
+                android:hint="Fecha"
+                android:background="@drawable/stilofechas"
+                android:id="@+id/actuFechaNac"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:layout_centerHorizontal="true"
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/lblPais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="Pais" />
 
             <Spinner
