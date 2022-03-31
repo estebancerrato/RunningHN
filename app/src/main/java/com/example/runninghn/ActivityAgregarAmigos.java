@@ -55,8 +55,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 
     final Context context = this;
 
-
-
+    int amigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         listViewCustomAdapter = findViewById(R.id.listaAmigos);
         adaptador = new AdaptadorUsuario(this);
 
-        String email = getIntent().getStringExtra("correo");
+        String email = RestApiMethods.correo;
         listarUsuarios(email);
     }
 //consulta en la base de datos el pais del correo que se logueo, luego manda a llamar el listado de personas de ese pais
@@ -114,7 +113,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         HashMap<String, String> parametros = new HashMap<>();
         parametros.put("codigo_usuario", codigoUsuario+"");
         parametros.put("codigo_amigo", codigoAmigo+"");
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointListarUsuarioPaise,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointAgregarAmigo,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -172,9 +171,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                                 .setCancelable(false)
                                 .setPositiveButton("Si",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
-                                                //falta obtener el codigo del usuario que se logueo
-                                                //agregarAmigo();
-
+                                                agregarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
                                             }
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -188,12 +185,11 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                         // create alert dialog
                         AlertDialog alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
-                        Toast.makeText(getApplicationContext(),"Activado", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getApplicationContext(),"Desactivado", Toast.LENGTH_SHORT).show();
+
                     }
 
-                    Toast.makeText(getApplicationContext(),"id: "+listaUsuarios.get(position).getId(), Toast.LENGTH_SHORT).show();
+                    amigo = listaUsuarios.get(position).getId();
                 }
             });
 

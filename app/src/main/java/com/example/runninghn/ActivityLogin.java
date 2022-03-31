@@ -120,7 +120,7 @@ public class ActivityLogin extends AppCompatActivity {
                             mensaje = RowMensaje.getString("mensaje");
                             codigo = RowMensaje.getString("codigo_usuario");
 
-                            Toast.makeText(getApplicationContext(), "Codigo " + codigo, Toast.LENGTH_SHORT).show();
+                            RestApiMethods.codigo_usuario = codigo;
                         }
 
                         if (mensaje.equals("login exitoso")){

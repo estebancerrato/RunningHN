@@ -115,7 +115,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ActivityAnuncio1"
@@ -148,6 +147,7 @@
         <activity
             android:name=".Activity_Actualizar_Perfil"
             android:exported="true">
+
         </activity>
 
 
