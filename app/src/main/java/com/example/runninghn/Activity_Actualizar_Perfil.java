@@ -60,7 +60,6 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
     int codigoPaisSeleccionado;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +81,10 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         String nombres =getIntent().getStringExtra("nombres");
         String apellidos =getIntent().getStringExtra("apellidos");
         String fechaNac =getIntent().getStringExtra("fechanac");
+        String cod_pais = getIntent().getStringExtra("codigo_pais");
         String peso =getIntent().getStringExtra("peso");
         String altura =getIntent().getStringExtra("altura");
         fotoString =getIntent().getStringExtra("foto");
-
 
         txtNombre.setText(nombres);
         txtApellido.setText(apellidos);
@@ -103,7 +102,6 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
                 //Quitar los caracteres del combobox para obtener solo el codigo del pais
                 codigoPaisSeleccionado = Integer.valueOf(extraerNumeros(cadena).toString().replace("]","").replace("[",""));
-
             }
 
             @Override
