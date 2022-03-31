@@ -46,8 +46,8 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
     private LatLng sydney = new LatLng(-33.81, 151.211);
 
-    Double dLatitud = 14.0676649;
-    Double dLongitud = -87.2112;
+    LatLng pinicial;
+    Double km =0.0;
 
 
 
@@ -68,6 +68,7 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
 
 
+
         return root;
     }
 
@@ -85,29 +86,11 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
 
         LatLng prueba = new LatLng(-33.81, 151.215);
-        DecimalFormat df = new DecimalFormat("#.00");
-        Double km = Double.valueOf(df.format(CalcularDistanciaenKM(sydney,prueba)));
-
-        mMap.addMarker(new MarkerOptions().position(new LatLng(dLatitud,dLongitud)).title("Punto Inicial").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
-
-        ejecutar();
-
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
-//        mMap.addMarker(new MarkerOptions().position(prueba).title("Prueba").icon(BitmapDescriptorFactory.fromResource(R.drawable.descansando)));
-////        Polyline polyline = mMap.addPolyline(new PolylineOptions().add(
-//
-//                new LatLng(-33.81, 151.211),
-//                new LatLng(-33.81, 151.215),
-//                new LatLng(-33.82, 151.217)
-//        ).width(7).color(Color.RED).geodesic(true));
-
-
-
 
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
-
+        ejecutar();
 
     }
 
@@ -148,18 +131,32 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
         Double latitud = 0.0 ;
         latitud= ActivityNuevaCarrera.getlatitud();
-        Toast.makeText(getContext(),"latitud "+latitud,Toast.LENGTH_SHORT).show();
 
         Double longitud = 0.0;
         longitud= ActivityNuevaCarrera.getLongitud();
-        Toast.makeText(getContext(),"longitud "+longitud,Toast.LENGTH_SHORT).show();
          LatLng pfinal = new LatLng(latitud, longitud);
 
-        mMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title("Punto Final").icon(BitmapDescriptorFactory.fromResource(R.drawable.descansando)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud,longitud), 15));
-        //mMap.addPolyline(new PolylineOptions().add(new LatLng(dLatitud,dLongitud),new LatLng(latitud, longitud)).width(7).color(Color.RED).geodesic(true));
 
 
+        if (ActivityNuevaCarrera.btnComenzar.getText().equals("Comenzar")){
+            pinicial= new LatLng(latitud, longitud);
+//            mMap.addMarker(new MarkerOptions().position(pinicial).title("Punto Inicial").icon(BitmapDescriptorFactory.defaultMarker()));
+//            Toast.makeText(getContext(), "Punto Inicial"+pinicial, Toast.LENGTH_SHORT).show();
+        }
+
+        if(ActivityNuevaCarrera.btnComenzar.getText().equals("DETENER")){
+            Double distancia =0.0;
+            pfinal = pinicial;//actualizamos el punto inicial con el final
+            pinicial = new LatLng(latitud,longitud);
+            mMap.addPolyline(new PolylineOptions().add(pinicial,pfinal).width(7).color(Color.RED).geodesic(true));
+            DecimalFormat df = new DecimalFormat("#.00");
+            distancia = Double.valueOf(df.format(CalcularDistanciaenKM(pinicial,pfinal)));
+            km = km + distancia;
+            mMap.addMarker(new MarkerOptions().position(pinicial).title("Punto Inicial").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
+        }
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pfinal, 17));
+        Toast.makeText(getContext(), "KM recorrido: "+km, Toast.LENGTH_SHORT).show();
 
     }
 

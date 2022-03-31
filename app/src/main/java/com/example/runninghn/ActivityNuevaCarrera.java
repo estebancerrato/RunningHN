@@ -32,7 +32,7 @@ import java.util.Locale;
 public class ActivityNuevaCarrera extends AppCompatActivity{
 
 
-    Button btnComenzar;
+    public static Button btnComenzar;
     EditText txtLat,txtLon;
 
     public static String latitud = "";
@@ -69,13 +69,15 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                try {
-
-                }catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "Debe de tomarse una foto ",Toast.LENGTH_LONG).show();
+                if (btnComenzar.getText().equals("Comenzar")){
+                    latitud = txtLat.getText().toString();
+                    longitud = txtLon.getText().toString();
+                    btnComenzar.setText("DETENER");
+                }else if (btnComenzar.getText().equals("DETENER")){
+                    Toast.makeText(getApplicationContext(),"Se ha guardado la actividad",Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
