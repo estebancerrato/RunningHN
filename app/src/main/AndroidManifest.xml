@@ -68,10 +68,9 @@
         <activity
             android:name=".Activity_Perfil"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
+
+
         </activity>
         <activity
             android:name=".ActivityAgregarAmigos"
@@ -112,7 +111,10 @@
         <activity
             android:name=".ActivityLogin"
             android:exported="true" >
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -127,7 +129,6 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true">
-
 
         </activity>
 

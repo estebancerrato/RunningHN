@@ -24,6 +24,8 @@ public class RestApiMethods {
     public static final String EndPointListarUsuarioPaise = StringHttp + ipaddress + listaUsuarioPaise;
     public static String EndPointBuscarUsuario;
 
+    public static  String correo = "";
+
     String prueba = "http://transportweb2.online/API/listasingleusuariopais.php";
 }
 

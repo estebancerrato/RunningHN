@@ -69,6 +69,8 @@ public class ActivityLogin extends AppCompatActivity {
                 String contrasenia = txtcontrasenia.getText().toString();
                 loginUsuario(usuario,contrasenia);
 
+                RestApiMethods.correo = txtcorreo.getText().toString();
+
             }
         });
 
@@ -125,7 +127,7 @@ public class ActivityLogin extends AppCompatActivity {
                             }
 
                             Toast.makeText(getApplicationContext(), "Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),ActivityAgregarAmigos.class);
+                            Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
                             intent.putExtra("correo", txtcorreo.getText().toString());
                             startActivity(intent);
                             finish();

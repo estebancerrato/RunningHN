@@ -9,9 +9,9 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="409dp"
-        android:layout_height="338dp"
-        tools:layout_editor_absoluteX="0dp"
+        android:layout_width="411dp"
+        android:layout_height="408dp"
+        tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
@@ -35,8 +35,8 @@
 
             <ImageView
                 android:id="@+id/fhImage"
-                android:layout_width="wrap_content"
-                android:layout_height="107dp"
+                android:layout_width="match_parent"
+                android:layout_height="118dp"
                 android:layout_centerInParent="true"
                 app:srcCompat="@drawable/contacto"
                 tools:srcCompat="@drawable/contacto" />
@@ -123,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="44dp"
         android:text="Editar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />

@@ -64,11 +64,13 @@ String email;
         btnEditar = (Button) findViewById(R.id.perfilbtnEditar);
         btnAtras = (Button) findViewById(R.id.perbtnAtras);
 
+        Toast.makeText(getApplicationContext(),RestApiMethods.correo,Toast.LENGTH_SHORT).show();
+
         /*=================TRAER EL USUARIO DEL ARCHIVO CREDENCIAL CON SHARPREFERENCES*/
         SharedPreferences mSharedPrefs = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         String correo = mSharedPrefs.getString("usuario","");
 
-        email = getIntent().getStringExtra("e-mail");
+        email = RestApiMethods.correo;
 
         listarUsuarios(email);
         
