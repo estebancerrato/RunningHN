@@ -1,19 +1,26 @@
 package com.example.runninghn;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.runninghn.Modelo.RestApiMethods;
 
 public class ActivityAnuncio4 extends AppCompatActivity {
+
+    SharedPreferences mSharedPrefs;
+
     private GestureDetectorCompat mDetector;
     View Ingresar;
     @Override
@@ -61,6 +68,13 @@ public class ActivityAnuncio4 extends AppCompatActivity {
         Ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                mSharedPrefs = getSharedPreferences("anuncios",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPrefs.edit();
+                    String olvidar = "1";
+                    editor.putString("olvidar",olvidar);
+                    editor.commit();
+
                 openActivityLogin();
             }
         });
