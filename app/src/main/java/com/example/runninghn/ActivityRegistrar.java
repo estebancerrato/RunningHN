@@ -29,6 +29,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -116,6 +117,19 @@ public class ActivityRegistrar extends AppCompatActivity {
         Random random = new Random();
         codigo = random.nextInt(8999)+1000;
 //        Toast.makeText(getApplicationContext(),"codigo: "+codigo,Toast.LENGTH_SHORT).show();
+        peso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionarPeso();
+            }
+        });
+
+        altura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionarAltura();
+            }
+        });
 
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -505,6 +519,79 @@ public class ActivityRegistrar extends AppCompatActivity {
             pdialog.dismiss();
             Toast.makeText(getApplicationContext(),"Mensaje enviado", Toast.LENGTH_LONG).show();
         }
+    }
+
+    //------seleccionar peso
+    private void seleccionarPeso(){
+        LayoutInflater inflater = this.getLayoutInflater();
+        View item = inflater.inflate(R.layout.pickerpeso, null);
+        NumberPicker picker1= (NumberPicker) item.findViewById(R.id.number1);
+        NumberPicker picker2= (NumberPicker) item.findViewById(R.id.number2);
+
+        picker1.setMaxValue(999);
+        picker1.setMinValue(0);
+        picker2.setMaxValue(9);
+        picker2.setMinValue(0);
+        picker1.setValue(100);
+
+        NumberPicker.OnValueChangeListener changeListener = new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker1, int oldVal, int newVal) {
+                peso.setText(picker1.getValue()+" . "+picker2.getValue());
+
+            }
+        };
+
+        NumberPicker.OnValueChangeListener change = new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker2, int oldVal, int newVal) {
+                peso.setText(picker1.getValue()+" . "+picker2.getValue());
+            }
+        };
+
+        picker1.setOnValueChangedListener(changeListener);
+        picker2.setOnValueChangedListener(change);
+
+
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setView(item);
+        builder.setTitle("Peso");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
+    }
+    private void seleccionarAltura(){
+        LayoutInflater inflater = this.getLayoutInflater();
+        View item = inflater.inflate(R.layout.pickeraltura, null);
+        NumberPicker picker1= (NumberPicker) item.findViewById(R.id.numberpickerAltura);
+        picker1.setMinValue(0);
+        picker1.setMaxValue(300);
+        picker1.setValue(100);
+
+        NumberPicker.OnValueChangeListener changeListener = new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker1, int oldVal, int newVal) {
+                altura.setText(picker1.getValue()+"");
+
+            }
+        };
+
+        picker1.setOnValueChangedListener(changeListener);
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setView(item);
+        builder.setTitle("Seleccione su altura");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
     }
 
 }
