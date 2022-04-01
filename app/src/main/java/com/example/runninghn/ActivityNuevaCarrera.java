@@ -85,9 +85,6 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                     longitud = txtLon.getText().toString();
                     btnComenzar.setText("DETENER");
 
-
-
-
                 }else if (btnComenzar.getText().equals("DETENER")){
                     try {
                         guardarRecorrido(DashboardFragment.recorridoMap,RestApiMethods.codigo_usuario,DashboardFragment.km);
@@ -154,8 +151,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getString("mensaje").toString().equals("Actividad creada")){
-
-
+                        cerrarActividad();
                         Toast.makeText(getApplicationContext(), "Actividad guardada exitosamente", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -172,6 +168,14 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
         });
 
         queue.add(jsonObjectRequest);
+    }
+
+    private void cerrarActividad(){
+        getSupportFragmentManager().beginTransaction().
+                remove(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView)).commit();
+        getSupportFragmentManager().beginTransaction().
+                remove(getSupportFragmentManager().findFragmentById(R.id.navigation_dashboard));
+        finish();
     }
 
 
