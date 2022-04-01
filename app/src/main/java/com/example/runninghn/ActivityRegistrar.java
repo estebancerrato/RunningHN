@@ -22,6 +22,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -117,17 +118,19 @@ public class ActivityRegistrar extends AppCompatActivity {
         Random random = new Random();
         codigo = random.nextInt(8999)+1000;
 //        Toast.makeText(getApplicationContext(),"codigo: "+codigo,Toast.LENGTH_SHORT).show();
-        peso.setOnClickListener(new View.OnClickListener() {
+        peso.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
                 seleccionarPeso();
+                return false;
             }
         });
 
-        altura.setOnClickListener(new View.OnClickListener() {
+        altura.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onTouch(View view, MotionEvent motionEvent) {
                 seleccionarAltura();
+                return false;
             }
         });
 
