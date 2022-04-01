@@ -10,9 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -23,10 +21,23 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.runninghn.Modelo.RestApiMethods;
 import com.example.runninghn.databinding.ActivityMapsBinding;
+import com.example.runninghn.ui.dashboard.DashboardFragment;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 public class ActivityNuevaCarrera extends AppCompatActivity{
@@ -73,8 +84,18 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                     latitud = txtLat.getText().toString();
                     longitud = txtLon.getText().toString();
                     btnComenzar.setText("DETENER");
+
+
+
+
                 }else if (btnComenzar.getText().equals("DETENER")){
-                    Toast.makeText(getApplicationContext(),"Se ha guardado la actividad",Toast.LENGTH_SHORT).show();
+                    try {
+                        guardarRecorrido(DashboardFragment.recorridoMap,RestApiMethods.codigo_usuario,DashboardFragment.km);
+                        Toast.makeText(getApplicationContext(),"recorrido "+ DashboardFragment.recorridoMap,Toast.LENGTH_LONG).show();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
 
 
@@ -117,6 +138,40 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
         mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
 
 
+    }
+
+    //-------------------------GUARDAR RECORRIDO--------------------------
+
+    private void guardarRecorrido(List<LatLng> latitudLongitud, String codigoUsuario, Double distancia) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        HashMap<String, String> parametros = new HashMap<>();
+        parametros.put("latitudLongitud", latitudLongitud+"");
+        parametros.put("codigo_usuario", codigoUsuario);
+        parametros.put("distancia", distancia+"");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.GuardarActidad,
+                new JSONObject(parametros), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getString("mensaje").toString().equals("Actividad creada")){
+
+
+                        Toast.makeText(getApplicationContext(), "Actividad guardada exitosamente", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(jsonObjectRequest);
     }
 
 

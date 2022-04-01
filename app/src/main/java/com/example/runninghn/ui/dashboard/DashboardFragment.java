@@ -1,32 +1,24 @@
 package com.example.runninghn.ui.dashboard;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentController;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.runninghn.ActivityNuevaCarrera;
-import com.example.runninghn.MapsActivity;
 import com.example.runninghn.R;
 import com.example.runninghn.databinding.ActivityMapsBinding;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import android.content.pm.PackageManager;
+
 import android.widget.Toast;
 
 import com.google.android.gms.maps.SupportMapFragment;
@@ -36,6 +28,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
@@ -44,16 +38,11 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 
-    private LatLng sydney = new LatLng(-33.81, 151.211);
+
 
     LatLng pinicial;
-    Double km =0.0;
-
-
-
-
-
-
+    public static Double km =0.0;
+    public static List<LatLng> recorridoMap = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -85,7 +74,7 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
         // Add a marker in Sydney and move the camera
 
-        LatLng prueba = new LatLng(-33.81, 151.215);
+
 
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -144,15 +133,18 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 //            Toast.makeText(getContext(), "Punto Inicial"+pinicial, Toast.LENGTH_SHORT).show();
         }
 
-        if(ActivityNuevaCarrera.btnComenzar.getText().equals("DETENER")){
-            Double distancia =0.0;
-            pfinal = pinicial;//actualizamos el punto inicial con el final
-            pinicial = new LatLng(latitud,longitud);
-            mMap.addPolyline(new PolylineOptions().add(pinicial,pfinal).width(7).color(Color.RED).geodesic(true));
-            DecimalFormat df = new DecimalFormat("#.00");
-            distancia = Double.valueOf(df.format(CalcularDistanciaenKM(pinicial,pfinal)));
-            km = km + distancia;
-            mMap.addMarker(new MarkerOptions().position(pinicial).title("Punto Inicial").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
+        if(ActivityNuevaCarrera.btnComenzar.getText().equals("DETENER")) {
+            if (pinicial != null) {
+                Double distancia = 0.0;
+                pfinal = pinicial;//actualizamos el punto inicial con el final
+                pinicial = new LatLng(latitud, longitud);
+                mMap.addPolyline(new PolylineOptions().add(pinicial, pfinal).width(7).color(Color.RED).geodesic(true));
+                DecimalFormat df = new DecimalFormat("#.00");
+                distancia = Double.valueOf(df.format(CalcularDistanciaenKM(pinicial, pfinal)));
+                km = km + distancia;
+                mMap.addMarker(new MarkerOptions().position(pinicial).title("Punto Inicial").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
+                recorridoMap.add(pinicial);
+            }
         }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pfinal, 17));
