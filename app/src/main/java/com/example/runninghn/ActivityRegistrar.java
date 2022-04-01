@@ -521,7 +521,7 @@ public class ActivityRegistrar extends AppCompatActivity {
         }
     }
 
-    //------seleccionar peso
+    //------USO DE NUMBERPICKER DE SELECCION DE DATOS. ----------------------------
     private void seleccionarPeso(){
         LayoutInflater inflater = this.getLayoutInflater();
         View item = inflater.inflate(R.layout.pickerpeso, null);
