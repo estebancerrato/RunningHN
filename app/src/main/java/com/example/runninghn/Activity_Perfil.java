@@ -65,7 +65,7 @@ String email;
         btnEditar = (TextView) findViewById(R.id.perfilbtnEditar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
         btnAtras = (TextView) findViewById(R.id.perbtnAtras);
 
-        email = RestApiMethods.correo;
+        email = ActivityTablero.tablero_correo;
 
         listarUsuarios(email);
         
@@ -80,8 +80,7 @@ String email;
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ActivityPrincipal.class);
-                startActivity(intent);
+                finish();
 
             }
         });

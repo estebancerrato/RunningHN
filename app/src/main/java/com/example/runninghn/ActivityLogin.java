@@ -119,7 +119,7 @@ public class ActivityLogin extends AppCompatActivity {
                             JSONObject RowMensaje = mensajeArray.getJSONObject(i);
                             mensaje = RowMensaje.getString("mensaje");
                             codigo = RowMensaje.getString("codigo_usuario");
-
+                            RestApiMethods.correo = txtcorreo.getText().toString();
                             RestApiMethods.codigo_usuario = codigo;
                         }
 
@@ -137,6 +137,7 @@ public class ActivityLogin extends AppCompatActivity {
                                 editor.putString("password","");
                                 editor.commit();
                             }
+
 
                             Toast.makeText(getApplicationContext(), "Response " + mensaje, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),ActivityTablero.class);
