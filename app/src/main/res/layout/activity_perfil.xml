@@ -9,9 +9,9 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="411dp"
-        android:layout_height="408dp"
-        tools:layout_editor_absoluteX="-2dp"
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
@@ -19,56 +19,109 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/perbtnAtras"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/perbtnAtras"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Atras" />
-            </LinearLayout>
-
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#8be27e"
+                android:fontFamily="@font/oceanwidesemibold"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Regresar" />
             <ImageView
                 android:id="@+id/fhImage"
                 android:layout_width="match_parent"
-                android:layout_height="118dp"
-                android:layout_centerInParent="true"
-                app:srcCompat="@drawable/contacto"
-                tools:srcCompat="@drawable/contacto" />
+                android:layout_height="100dp"
+                app:srcCompat="@drawable/user"
+                tools:srcCompat="@drawable/user" />
 
             <TextView
                 android:id="@+id/lblnombres"
                 android:layout_width="119dp"
                 android:layout_height="wrap_content"
-                android:text="Nombre" />
+                android:fontFamily="@font/ptsans_regular"
+                android:text="Nombre"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/fhtxtnombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/ptsans_regular"
                 android:inputType="textPersonName"
-                android:enabled="false"
-                android:visibility="visible" />
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/lblFechaNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ptsans_regular"
+                android:text="Fecha Nacimiento"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/fhfecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/ptsans_regular"
+                android:inputType="date"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/lblPais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pais" />
+                android:fontFamily="@font/ptsans_regular"
+                android:text="Pais"
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/fhtxtPais"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:fontFamily="@font/ptsans_regular"
+                android:inputType="textPersonName"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/lblTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ptsans_regular"
+                android:text="Telefono"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/fhtelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/ptsans_regular"
+                android:inputType="phone"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ptsans_regular"
+                android:text="Correo"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/fhcorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:fontFamily="@font/ptsans_regular"
+                android:inputType="textEmailAddress"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,13 +137,17 @@
                         android:id="@+id/textView8"
                         android:layout_width="183dp"
                         android:layout_height="wrap_content"
-                        android:text="Peso" />
+                        android:fontFamily="@font/ptsans_regular"
+                        android:text="Peso"
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/textView9"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Altura" />
+                        android:fontFamily="@font/ptsans_regular"
+                        android:text="Altura"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -104,32 +161,63 @@
                     android:layout_width="181dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="@font/ptsans_regular"
                     android:hint="lb"
-                    android:enabled="false"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/fhaltura"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:fontFamily="@font/ptsans_regular"
                     android:hint="cm"
-                    android:enabled="false"
-                    android:inputType="numberSigned|text" />
+                    android:inputType="numberSigned|text"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <Button
+    <TextView
         android:id="@+id/perfilbtnEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:background="#8be27e"
+        android:fontFamily="@font/oceanwidesemibold"
         android:text="Editar"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <TextView
+        android:id="@+id/perfilbtnActualizar"
+        android:layout_width="350dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="90dp"
+        android:background="#8be27e"
+        android:fontFamily="@font/oceanwidesemibold"
+        android:text="Actualizar"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

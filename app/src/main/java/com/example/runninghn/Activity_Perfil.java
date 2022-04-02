@@ -23,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -45,7 +46,7 @@ import java.util.HashMap;
 public class Activity_Perfil extends AppCompatActivity {
 
 EditText txtnombre,txtpais,txtpeso,txtaltu;
-Button btnEditar,btnAtras;
+TextView btnEditar,btnAtras;   //OJOOOOOOOOOOOOOOO SE LOS CAMBIE A TEXTVIEW
 ImageView perfilfoto;
 Usuario usuario;
 ArrayList<String> arrayUsuario;
@@ -61,8 +62,8 @@ String email;
         txtpeso = (EditText) findViewById(R.id.fhpeso);
         txtaltu= (EditText) findViewById(R.id.fhaltura);
         perfilfoto = (ImageView) findViewById(R.id.fhImage);
-        btnEditar = (Button) findViewById(R.id.perfilbtnEditar);
-        btnAtras = (Button) findViewById(R.id.perbtnAtras);
+        btnEditar = (TextView) findViewById(R.id.perfilbtnEditar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
+        btnAtras = (TextView) findViewById(R.id.perbtnAtras);
 
         email = RestApiMethods.correo;
 

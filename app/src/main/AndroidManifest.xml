@@ -50,12 +50,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ActivitiAmigos"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              You can find your app ID in the AdMob UI. For android:value,
@@ -121,6 +117,11 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MapsActivity"
@@ -131,6 +132,10 @@
         <activity
             android:name=".Activity_Actualizar_Perfil"
             android:exported="true"></activity>
+        <activity
+            android:name=".ActivityTablero"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
