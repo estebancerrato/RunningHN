@@ -42,7 +42,8 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
 
     LatLng pinicial;
     public static Double km =0.0;
-    public static List<LatLng> recorridoMap = new ArrayList<>();
+    public static List<Double> recorridoMapLatitud = new ArrayList<>();
+    public static List<Double> recorridoMapLongitud = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,8 +72,6 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
 
 
 
@@ -143,7 +142,9 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
                 distancia = Double.valueOf(df.format(CalcularDistanciaenKM(pinicial, pfinal)));
                 km = km + distancia;
                 mMap.addMarker(new MarkerOptions().position(pinicial).title("Punto Inicial").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
-                recorridoMap.add(pinicial);
+                recorridoMapLongitud.add(longitud);
+                recorridoMapLatitud.add(latitud);
+
             }
         }
 

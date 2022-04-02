@@ -2,11 +2,25 @@ package com.example.runninghn;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.runninghn.Modelo.RestApiMethods;
+import com.example.runninghn.Modelo.Usuario;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,15 +32,23 @@ import com.example.runninghn.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback  {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
-    private List<LatLng> polylinelist;
 
+    List<Double> pilatitud = new ArrayList<>();
+    List<Double> pilongitud = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,52 +75,86 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-33.81, 151.211);
-        LatLng prueba = new LatLng(-33.81, 151.215);
-        Double km = CalcularDistanciaenKM(sydney,prueba);
-        Toast.makeText(getApplicationContext(),km+" KM", Toast.LENGTH_SHORT).show();
-
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
-        mMap.addMarker(new MarkerOptions().position(prueba).title("Prueba").icon(BitmapDescriptorFactory.fromResource(R.drawable.descansando)));
-//        Polyline polyline = mMap.addPolyline(new PolylineOptions().add(
-//
-//                new LatLng(-33.81, 151.211),
-//                new LatLng(-33.81, 151.215),
-//                new LatLng(-33.82, 151.217)
-//        ).width(7).color(Color.RED).geodesic(true));
-
-
-
-        mMap.addPolyline(new PolylineOptions().add(sydney,prueba).width(7).color(Color.RED).geodesic(true));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 15));
+        obtenerRecorrido("1111140");
+        ejecutar();
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
 
     }
 
-    public double CalcularDistanciaenKM(LatLng StartP, LatLng EndP) {
-        int Radius=6371;//radius of earth in Km
-        double lat1 = StartP.latitude;
-        double lat2 = EndP.latitude;
-        double lon1 = StartP.longitude;
-        double lon2 = EndP.longitude;
-        double dLat = Math.toRadians(lat2-lat1);
-        double dLon = Math.toRadians(lon2-lon1);
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLon/2) * Math.sin(dLon/2);
-        double c = 2 * Math.asin(Math.sqrt(a));
-        double valueResult= Radius*c;
-        double km=valueResult/1;
-        DecimalFormat newFormat = new DecimalFormat("####");
-        int kmInDec =  Integer.valueOf(newFormat.format(km));
-        double meter=valueResult%1000;
-        int  meterInDec= Integer.valueOf(newFormat.format(meter));
-        Log.i("Radius Value",""+valueResult+"   KM  "+kmInDec+" Meter   "+meterInDec);
-        return Radius * c;
+
+
+    private void obtenerRecorrido(String codigo_actividad) {
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        HashMap<String, String> parametros = new HashMap<>();
+        parametros.put("codigo_actividad", codigo_actividad);
+        String url = "http://transportweb2.online/API/listadetalleactividad.php";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
+                new JSONObject(parametros), new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    JSONArray usuarioArray = response.getJSONArray("detalle");
+                    for (int i = 0; i < usuarioArray.length(); i++) {
+                        JSONObject RowDetalle = usuarioArray.getJSONObject(i);
+                        pilatitud.add(RowDetalle.getDouble("Latitud"));
+                        pilongitud.add(RowDetalle.getDouble("Longitud"));
+                    }
+
+
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error "+e, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+
     }
+
+
+    private void ejecutar(){
+        final Handler handler= new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                metodoEjecutar();//llamamos nuestro metodo
+                //handler.postDelayed(this,0);//se ejecutara cada 10 segundos
+            }
+        },2000);//empezara a ejecutarse después de 5 milisegundos
+    }
+    private void metodoEjecutar() {
+        //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
+        LatLng pfinal = new LatLng(pilatitud.get(1),pilongitud.get(1));
+        LatLng pinicial =new LatLng(pilatitud.get(0), pilongitud.get(0));
+        mMap.addMarker(new MarkerOptions().position(pinicial).title("Posicion inicial").icon(BitmapDescriptorFactory.defaultMarker()));
+        mMap.addPolyline(new PolylineOptions().add(pfinal, pinicial).width(7).color(Color.RED).geodesic(true));
+        for(int i = 0;i<pilatitud.size() ;i++)
+        {
+            pinicial = new LatLng(pilatitud.get(i),pilongitud.get(i));
+            mMap.addMarker(new MarkerOptions().position(pinicial).icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
+            mMap.addPolyline(new PolylineOptions().add(pfinal, pinicial).width(7).color(Color.RED).geodesic(true));
+            pfinal = pinicial;//actualizamos el punto inicial con el final
+            if (i == pilatitud.size()){
+                mMap.addMarker(new MarkerOptions().position(pfinal).title("Posicion Final").icon(BitmapDescriptorFactory.fromResource(R.drawable.descansando)));
+            }
+        }
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pfinal, 15));
+
+
+    }
+
+
 
 
 

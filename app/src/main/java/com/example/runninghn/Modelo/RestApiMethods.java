@@ -14,20 +14,15 @@ public class RestApiMethods {
     private static final String ListaAgregarAmigo = "/API/listaagregaramigos.php";
     private static final String agregarAmigo = "/API/crearamigo.php";
     private static final String guardarActividad = "/API/crearactividad.php";
+    private static final String detallesguardarActividad = "/API/creardetalleactividad.php";
     private static final String EliminarAmigos = "/API/eliminaramigo.php";
 
 
-    //metodo get listaamigos.php
-    //
-    //Retorna:
-    //código_usuario (del amigo)
-    //nombrecompleto
-    //foto
-
-    public static final String EndPointListaAmigosAdd = StringHttp + ipaddress + GetAmigosAgregados;
-    public static final String EndPointEliminarAmigosAdd = StringHttp + ipaddress + EliminarAmigos;
+    //metodo get
+    //public static final String EndPointGetContact = StringHttp + ipaddress + GetEmple;
     public static final String EndPointValidarLogin = StringHttp + ipaddress + GetBuscar;
     public static final String EndPointBuscarCorreo = StringHttp + ipaddress + getBuscarCorreo;
+
     public static final String EndPointSetUpdateUser= StringHttp + ipaddress + setUpdate;
     public static final String EndPointCreateUsuario = StringHttp + ipaddress + CreateUsuario;
     public static final String EndPointListarPaises = StringHttp + ipaddress + listaPaises;
@@ -35,6 +30,9 @@ public class RestApiMethods {
     public static final String EndPointAgregarAmigo = StringHttp + ipaddress + agregarAmigo;
     public static final String EndPointListarAmigo = StringHttp + ipaddress + ListaAgregarAmigo;
     public static final String GuardarActidad = StringHttp + ipaddress + guardarActividad;
+    public static final String DetallesGuardarActidad = StringHttp + ipaddress + detallesguardarActividad;
+    public static final String EndPointListaAmigosAdd = StringHttp + ipaddress + GetAmigosAgregados;
+    public static final String EndPointEliminarAmigosAdd = StringHttp + ipaddress + EliminarAmigos;
 
     public static String EndPointBuscarUsuario;
 

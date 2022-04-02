@@ -132,10 +132,6 @@
         <activity
             android:name=".Activity_Actualizar_Perfil"
             android:exported="true"></activity>
-        <activity
-            android:name=".ActivityTablero"
-            android:exported="true">
-        </activity>
     </application>
 
 </manifest>
