@@ -4,7 +4,7 @@ public class RestApiMethods {
     private static final String ipaddress = "transportweb2.online";
     public static final String StringHttp = "http://";
     //EndPoint Urls
-   // private static final String GetEmple = "/APIexam/listacontactos.php";
+    private static final String GetAmigosAgregados = "/API/listaamigos.php";
     private static final String GetBuscar = "/API/validarLogin.php";
     private static final String getBuscarCorreo = "/API/listasingleusuario.php";
     private static final String setUpdate = "/API/actualizarusuario.php";
@@ -14,13 +14,20 @@ public class RestApiMethods {
     private static final String ListaAgregarAmigo = "/API/listaagregaramigos.php";
     private static final String agregarAmigo = "/API/crearamigo.php";
     private static final String guardarActividad = "/API/crearactividad.php";
+    private static final String EliminarAmigos = "/API/eliminaramigo.php";
 
 
-    //metodo get
-    //public static final String EndPointGetContact = StringHttp + ipaddress + GetEmple;
+    //metodo get listaamigos.php
+    //
+    //Retorna:
+    //código_usuario (del amigo)
+    //nombrecompleto
+    //foto
+
+    public static final String EndPointListaAmigosAdd = StringHttp + ipaddress + GetAmigosAgregados;
+    public static final String EndPointEliminarAmigosAdd = StringHttp + ipaddress + EliminarAmigos;
     public static final String EndPointValidarLogin = StringHttp + ipaddress + GetBuscar;
     public static final String EndPointBuscarCorreo = StringHttp + ipaddress + getBuscarCorreo;
-
     public static final String EndPointSetUpdateUser= StringHttp + ipaddress + setUpdate;
     public static final String EndPointCreateUsuario = StringHttp + ipaddress + CreateUsuario;
     public static final String EndPointListarPaises = StringHttp + ipaddress + listaPaises;
