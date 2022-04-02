@@ -9,10 +9,12 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="410dp"
-        android:layout_height="582dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="386dp"
+        android:layout_height="712dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -180,23 +182,23 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/perfilbtnActualizar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="36dp"
+                android:background="#8be27e"
+                android:fontFamily="@font/oceanwidesemibold"
+                android:gravity="center"
+                android:text="Actualizar"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/perfilbtnActualizar"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="36dp"
-        android:background="#8be27e"
-        android:fontFamily="@font/oceanwidesemibold"
-        android:gravity="center"
-        android:text="Actualizar"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
