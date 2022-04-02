@@ -45,7 +45,7 @@ import java.util.HashMap;
 
 public class Activity_Perfil extends AppCompatActivity {
 
-EditText txtnombre,txtpais,txtpeso,txtaltu;
+EditText txtnombre,txtpais,txtpeso,txtaltu, txtfechaNacimiento, txtcorreo;
 TextView btnEditar,btnAtras;   //OJOOOOOOOOOOOOOOO SE LOS CAMBIE A TEXTVIEW
 ImageView perfilfoto;
 Usuario usuario;
@@ -58,6 +58,8 @@ String email;
         setContentView(R.layout.activity_perfil);
 
         txtnombre = (EditText) findViewById(R.id.fhtxtnombre);
+        txtfechaNacimiento = (EditText) findViewById(R.id.fhfecha);
+        txtcorreo = (EditText) findViewById(R.id.fhcorreo);
         txtpais = (EditText) findViewById(R.id.fhtxtPais);
         txtpeso = (EditText) findViewById(R.id.fhpeso);
         txtaltu= (EditText) findViewById(R.id.fhaltura);
@@ -116,9 +118,12 @@ String email;
                                 RowUsuario.getString("foto"));
 
                         txtnombre.setText(usuario.getNombres()+" "+usuario.getApellidos());
+                        txtfechaNacimiento.setText(usuario.getFechaNac());
                         txtpeso.setText(usuario.getPeso());
                         txtaltu.setText(usuario.getAltura());
                         txtpais.setText(usuario.getPais());
+                        txtcorreo.setText(usuario.getCorreo());
+
                         mostrarFoto(usuario.getFoto().toString());
 
                     }
