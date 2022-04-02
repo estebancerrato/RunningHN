@@ -9,8 +9,8 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="530dp"
+        android:layout_width="410dp"
+        android:layout_height="582dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
+
             <TextView
                 android:id="@+id/perbtnAtras"
                 android:layout_width="wrap_content"
@@ -26,11 +27,12 @@
                 android:layout_weight="1"
                 android:background="#8be27e"
                 android:fontFamily="@font/oceanwidesemibold"
-                android:textSize="24sp"
-                android:textColor="@color/white"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Regresar" />
+                android:text="Regresar"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
             <ImageView
                 android:id="@+id/fhImage"
                 android:layout_width="match_parent"
@@ -182,42 +184,19 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/perfilbtnEditar"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:background="#8be27e"
-        android:fontFamily="@font/oceanwidesemibold"
-        android:text="Editar"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-    <TextView
         android:id="@+id/perfilbtnActualizar"
         android:layout_width="350dp"
         android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="36dp"
         android:background="#8be27e"
         android:fontFamily="@font/oceanwidesemibold"
-        android:text="Actualizar"
-        android:textSize="24sp"
-        android:textColor="@color/white"
         android:gravity="center"
+        android:text="Actualizar"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

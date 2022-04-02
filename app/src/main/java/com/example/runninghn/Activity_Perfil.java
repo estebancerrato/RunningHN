@@ -62,7 +62,7 @@ String email;
         txtpeso = (EditText) findViewById(R.id.fhpeso);
         txtaltu= (EditText) findViewById(R.id.fhaltura);
         perfilfoto = (ImageView) findViewById(R.id.fhImage);
-        btnEditar = (TextView) findViewById(R.id.perfilbtnEditar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
+        btnEditar = (TextView) findViewById(R.id.perfilbtnActualizar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
         btnAtras = (TextView) findViewById(R.id.perbtnAtras);
 
         email = ActivityTablero.tablero_correo;
