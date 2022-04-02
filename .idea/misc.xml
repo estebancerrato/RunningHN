@@ -3,10 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_actualizar_perfil.xml" value="0.27291666666666664" />
         <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_agregar_amigos.xml" value="0.27291666666666664" />
         <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_perfil.xml" value="0.25" />
         <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/activity_registrar.xml" value="0.27291666666666664" />
         <entry key="..\:/ProyectoMovilI/RunningHN/app/src/main/res/layout/amigo.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/caste/AndroidStudioProjects/RunningHN1.1/app/src/main/res/layout/activity_login.xml" value="0.1105072463768116" />
@@ -14,7 +12,9 @@
         <entry key="..\:/Users/caste/AndroidStudioProjects/RunningHN1.1/app/src/main/res/layout/activity_registrar.xml" value="0.1105072463768116" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2985" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2985" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/drawable/stilofechas.xml" value="0.1935" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/drawable/stilos.xml" value="0.1965" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_actualizar_perfil.xml" value="0.3625" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_agregar_amigos.xml" value="0.33" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio1.xml" value="0.3625" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio2.xml" value="0.1762917933130699" />
@@ -29,12 +29,17 @@
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_principal.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_recuperar.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_registrar.xml" value="0.3523550724637681" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_splash.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_tablero.xml" value="0.2694746376811594" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_usuario.xml" value="0.33" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/amigo.xml" value="0.3625" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment__recorrido.xml" value="0.15932117527862208" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment_dashboard.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment_home.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment_notifications.xml" value="0.3582427536231884" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment_perfil.xml" value="0.3582427536231884" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/pickeraltura.xml" value="0.33" />
+        <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/layout/pickerpeso.xml" value="0.3500905797101449" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
         <entry key="..\:/Users/esteb/AndroidStudioProjects/RunningHN/app/src/main/res/menu/menu.xml" value="0.3625" />
         <entry key="..\:/Users/sergio/AndroidStudioProjects/Luger24/RunningHN/app/src/main/res/drawable/gradiants.xml" value="0.124" />
@@ -45,19 +50,6 @@
         <entry key="..\:/Users/sergio/AndroidStudioProjects/Luger24/RunningHN/app/src/main/res/layout/activity_recuperar.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/sergio/AndroidStudioProjects/Luger24/RunningHN/app/src/main/res/layout/activity_splash.xml" value="0.1578125" />
         <entry key="..\:/Users/sergio/AndroidStudioProjects/Luger24/RunningHN/app/src/main/res/menu/bottom_nav_menu.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio1.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_anuncio2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_main2.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_maps.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_perfil.xml" value="0.1" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_principal.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_splash.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_tablero.xml" value="0.2" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/activity_usuario.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/amigo.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment_dashboard.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/sergio/AndroidStudioProjects/RunningHN/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

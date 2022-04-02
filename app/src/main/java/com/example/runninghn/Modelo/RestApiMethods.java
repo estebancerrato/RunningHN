@@ -31,6 +31,8 @@ public class RestApiMethods {
     public static final String EndPointListarAmigo = StringHttp + ipaddress + ListaAgregarAmigo;
     public static final String GuardarActidad = StringHttp + ipaddress + guardarActividad;
     public static final String DetallesGuardarActidad = StringHttp + ipaddress + detallesguardarActividad;
+    public static final String EndPointListaAmigosAdd = StringHttp + ipaddress + GetAmigosAgregados;
+    public static final String EndPointEliminarAmigosAdd = StringHttp + ipaddress + EliminarAmigos;
 
     public static String EndPointBuscarUsuario;
 
