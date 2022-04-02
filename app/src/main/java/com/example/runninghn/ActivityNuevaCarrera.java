@@ -11,6 +11,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +41,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+
 public class ActivityNuevaCarrera extends AppCompatActivity{
 
 
@@ -50,7 +53,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
     public static String longitud = "";
     GoogleMap mMap;
     private ActivityMapsBinding binding;
-
+    final String[] codigo_actividad = new String[1];
 
 
     @Override
@@ -87,8 +90,36 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
                 }else if (btnComenzar.getText().equals("DETENER")){
                     try {
-                        guardarRecorrido(DashboardFragment.recorridoMap,RestApiMethods.codigo_usuario,DashboardFragment.km);
-                        Toast.makeText(getApplicationContext(),"recorrido "+ DashboardFragment.recorridoMap,Toast.LENGTH_LONG).show();
+                        guardarRecorrido(RestApiMethods.codigo_usuario,DashboardFragment.km);
+
+
+                        new CountDownTimer(5000, 1000) {
+                            public void onFinish() {
+                                // When timer is finished
+                                // Execute your code here
+                                System.out.println("codigo actividad: "+codigo_actividad[0]);
+                                System.out.println("Latitud: "+DashboardFragment.recorridoMapLatitud.get(0));
+                                System.out.println("Longitud:"+DashboardFragment.recorridoMapLongitud.get(0));
+                                if (DashboardFragment.recorridoMapLongitud !=null) {
+                                    Toast.makeText(getApplicationContext(),"recorrido"+DashboardFragment.recorridoMapLatitud.get(0),Toast.LENGTH_SHORT).show();
+                                    for (int indice = 0; indice < DashboardFragment.recorridoMapLongitud.size(); indice++) {
+                                        guardarDetallesRecorrido(codigo_actividad[0], DashboardFragment.recorridoMapLatitud.get(indice), DashboardFragment.recorridoMapLongitud.get(indice));
+                                    }
+                                }
+
+                            }
+
+                            public void onTick(long millisUntilFinished) {
+                                // millisUntilFinished    The amount of time until finished.
+                            }
+                        }.start();
+
+
+
+
+                        //cerrarActividad();
+
+                        Toast.makeText(getApplicationContext(),"recorrido "+ DashboardFragment.recorridoMapLatitud+", "+DashboardFragment.recorridoMapLongitud,Toast.LENGTH_LONG).show();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -139,10 +170,10 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
     //-------------------------GUARDAR RECORRIDO--------------------------
 
-    private void guardarRecorrido(List<LatLng> latitudLongitud, String codigoUsuario, Double distancia) {
+    private void guardarRecorrido(String codigoUsuario, Double distancia) {
+
         RequestQueue queue = Volley.newRequestQueue(this);
         HashMap<String, String> parametros = new HashMap<>();
-        parametros.put("latitudLongitud", latitudLongitud+"");
         parametros.put("codigo_usuario", codigoUsuario);
         parametros.put("distancia", distancia+"");
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.GuardarActidad,
@@ -150,10 +181,39 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getString("mensaje").toString().equals("Actividad creada")){
-                        cerrarActividad();
-                        Toast.makeText(getApplicationContext(), "Actividad guardada exitosamente", Toast.LENGTH_SHORT).show();
-                    }
+
+                    codigo_actividad[0] = String.valueOf(response.getString("mensaje"));
+
+                    Toast.makeText(getApplicationContext(), "Actividad guardada exitosamente"+ codigo_actividad[0], Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(jsonObjectRequest);
+    }
+
+    private void guardarDetallesRecorrido(String codigoactividad, Double latitud, Double longitud) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        HashMap<String, String> parametros = new HashMap<>();
+        parametros.put("codigo_actividad", codigoactividad);
+        parametros.put("Latitud", latitud+"");
+        parametros.put("Longitud", longitud+"");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.DetallesGuardarActidad,
+                new JSONObject(parametros), new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Toast.makeText(getApplicationContext(), response.getString("mensaje"), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
