@@ -4,7 +4,7 @@ public class RestApiMethods {
     private static final String ipaddress = "transportweb2.online";
     public static final String StringHttp = "http://";
     //EndPoint Urls
-   // private static final String GetEmple = "/APIexam/listacontactos.php";
+    private static final String GetAmigosAgregados = "/API/listaamigos.php";
     private static final String GetBuscar = "/API/validarLogin.php";
     private static final String getBuscarCorreo = "/API/listasingleusuario.php";
     private static final String setUpdate = "/API/actualizarusuario.php";
@@ -15,6 +15,7 @@ public class RestApiMethods {
     private static final String agregarAmigo = "/API/crearamigo.php";
     private static final String guardarActividad = "/API/crearactividad.php";
     private static final String detallesguardarActividad = "/API/creardetalleactividad.php";
+    private static final String EliminarAmigos = "/API/eliminaramigo.php";
 
 
     //metodo get
