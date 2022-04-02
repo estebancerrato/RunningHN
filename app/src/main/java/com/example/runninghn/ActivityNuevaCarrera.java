@@ -117,7 +117,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
 
 
-                        //cerrarActividad();
+                        cerrarActividad();
 
                         Toast.makeText(getApplicationContext(),"recorrido "+ DashboardFragment.recorridoMapLatitud+", "+DashboardFragment.recorridoMapLongitud,Toast.LENGTH_LONG).show();
                     }catch (Exception e){
