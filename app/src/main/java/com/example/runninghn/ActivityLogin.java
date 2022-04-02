@@ -139,7 +139,7 @@ public class ActivityLogin extends AppCompatActivity {
                             }
 
                             Toast.makeText(getApplicationContext(), "Response " + mensaje, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),ActivityTablero.class);
+                            Intent intent = new Intent(getApplicationContext(),ActivityNuevaCarrera.class);
                             startActivity(intent);
                             finish();
                         }else{
