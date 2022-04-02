@@ -55,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
@@ -72,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="date"
                 android:textSize="20sp" />
@@ -89,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
@@ -106,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="phone"
                 android:textSize="20sp" />
@@ -123,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="textEmailAddress"
                 android:textSize="20sp" />
@@ -165,6 +170,7 @@
                     android:layout_width="181dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="@font/ptsans_regular"
                     android:hint="lb"
                     android:inputType="number"
@@ -175,6 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="@font/ptsans_regular"
                     android:hint="cm"
                     android:inputType="numberSigned|text"
