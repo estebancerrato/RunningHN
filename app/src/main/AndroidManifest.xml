@@ -49,13 +49,14 @@
         android:theme="@style/Theme.RunningHN"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ActivityClasificacion"
+            android:exported="false" />
+        <activity
             android:name=".Progreso_ListadoActividades"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ActivitiAmigos"
-            android:exported="true"></activity>
+            android:exported="true" />
         <!--
              You can find your app ID in the AdMob UI. For android:value,
             insert your own AdMob app ID in quotes, as shown below.
@@ -105,7 +106,7 @@
             android:exported="false" />
         <activity
             android:name=".ActivityLogin"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityAnuncio1"
             android:exported="true" />
@@ -120,6 +121,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -134,11 +136,10 @@
             android:exported="true" />
         <activity
             android:name=".ActivityTablero"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityEstadisticas"
             android:exported="false" />
-
     </application>
 
 </manifest>

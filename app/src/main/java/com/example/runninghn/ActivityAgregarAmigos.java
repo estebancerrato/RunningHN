@@ -63,7 +63,6 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_amigos);
         listViewCustomAdapter = findViewById(R.id.listaAmigos);
         adaptador = new AdaptadorUsuario(this);
-
         String email = RestApiMethods.correo;
         listarUsuarios(email);
     }
@@ -110,16 +109,16 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 //--agrega como amigo segun el codigo de usuario del listado.
     private void agregarAmigo(int codigoUsuario, int codigoAmigo) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        HashMap<String, String> parametros = new HashMap<>();
-        parametros.put("codigo_usuario", codigoUsuario+"");
-        parametros.put("codigo_amigo", codigoAmigo+"");
+        HashMap<String, Integer> parametros = new HashMap<>();
+        parametros.put("codigo_usuario", codigoUsuario);
+        parametros.put("codigo_amigo", codigoAmigo);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.EndPointAgregarAmigo,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getString("mensaje").toString().equals("Amigo agregado")){
-
+                        adaptador.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(), "Se agrego a tu lista de amigos", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
@@ -131,6 +130,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                adaptador.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
