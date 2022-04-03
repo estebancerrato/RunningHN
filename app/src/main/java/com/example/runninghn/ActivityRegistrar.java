@@ -150,36 +150,9 @@ public class ActivityRegistrar extends AppCompatActivity {
         btnguardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                configurar_envio();
-                final EditText taskEditText = new EditText(context);
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                alertDialogBuilder.setTitle("Verifique su correo");
-                alertDialogBuilder
-                        .setMessage("hemos enviado un correo con su codigo de verificación")
-                        .setView(taskEditText)
-                        .setCancelable(true)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        int task = Integer.valueOf(taskEditText.getText().toString());
-                                        if (codigo == task) {
-                                            validarDatos();
-                                            Toast.makeText(getApplicationContext(), "codigo valido", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "codigo invalido", Toast.LENGTH_SHORT).show();
-                                        }
 
-                                        //validarContrasenia();
-                                        //RegistrarUsuario();
-                                        //
-
-                                    }
-                                }
-
-                        );
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                validarDatos();
+//                configurar_envio();
 
 
             }
@@ -288,7 +261,8 @@ public class ActivityRegistrar extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Debe de escribir su altura", Toast.LENGTH_LONG).show();
         }else{
             validarContrasenia();
-            RegistrarUsuario();
+            //configurar_envio();
+            //RegistrarUsuario();
         }
     }
 
@@ -392,6 +366,42 @@ public class ActivityRegistrar extends AppCompatActivity {
     private String validarContrasenia() {
         if (contrasenia1.getText().toString().equals(contrasenia2.getText().toString())){
             contrasenia = contrasenia1.getText().toString();
+            configurar_envio();
+            final EditText taskEditText = new EditText(context);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+            alertDialogBuilder.setTitle("Verifique su correo");
+            alertDialogBuilder
+                    .setMessage("hemos enviado un correo con su codigo de verificación")
+                    .setView(taskEditText)
+                    .setCancelable(true)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    int task = Integer.valueOf(taskEditText.getText().toString());
+                                    if (codigo == task) {
+                                        //validarDatos();
+                                        RegistrarUsuario();
+                                        Toast.makeText(getApplicationContext(), "codigo valido", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "codigo invalido", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    //validarContrasenia();
+                                    //RegistrarUsuario();
+                                    //
+
+                                }
+                            }
+
+                    );
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Verificacion de contraseña incorrecta.", Toast.LENGTH_SHORT).show();
+
         }
         return contrasenia;
     }
