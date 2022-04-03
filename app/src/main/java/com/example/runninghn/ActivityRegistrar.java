@@ -8,17 +8,21 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,10 +32,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -50,6 +56,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
@@ -66,11 +73,19 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class ActivityRegistrar extends AppCompatActivity {
+    //Datos para fecha
+    private static final String TAG = "MainActivity";
+    private TextView mDisplayDate, fechaNac;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+    //
+
+
     Session session = null; //Inicio de session para autenticar usuario y password
     ProgressDialog pdialog = null; //dialogo del proceso
     String para, asunto, mensaje;//Para datos del mensaje
 
-    EditText nombres, apellidos, telefono, correo, contrasenia1, contrasenia2, fechaNac, peso, altura;
+    EditText nombres, apellidos, telefono, correo, contrasenia1, contrasenia2 ;
+    TextView peso, altura;
     Spinner cmbpais;
     Button btnguardar,btnTomaFoto,btnGaleria;
     String contrasenia;
@@ -104,33 +119,31 @@ public class ActivityRegistrar extends AppCompatActivity {
         correo = (EditText) findViewById(R.id.rtxtcorreo);
         contrasenia1 = (EditText) findViewById(R.id.rtxtcontraseña1);
         contrasenia2 = (EditText) findViewById(R.id.rtxtcontraseña2);
-        fechaNac = (EditText) findViewById(R.id.rtxtFechaNacimiento);
-        peso = (EditText) findViewById(R.id.rtxtPeso);
-        altura = (EditText) findViewById(R.id.rtxtAltura);
+        fechaNac = (TextView) findViewById(R.id.rtxtFechaNacimiento);
+        peso = (TextView) findViewById(R.id.rtxtPeso);
+        altura = (TextView) findViewById(R.id.rtxtAltura);
         cmbpais = (Spinner) findViewById(R.id.rcmbPais);
         btnguardar = (Button) findViewById(R.id.rbtnGuardar);
         btnTomaFoto = (Button) findViewById(R.id.rbtnTomarFoto);
         btnGaleria = (Button) findViewById(R.id.rbtngaleria);
 
-        intent = new Intent(getApplicationContext(),ActivityRegistrar.class);//para obtener el contacto seleccionado mas adelante
+        intent = new Intent(getApplicationContext(), ActivityRegistrar.class);//para obtener el contacto seleccionado mas adelante
 
 
         Random random = new Random();
-        codigo = random.nextInt(8999)+1000;
+        codigo = random.nextInt(8999) + 1000;
 //        Toast.makeText(getApplicationContext(),"codigo: "+codigo,Toast.LENGTH_SHORT).show();
-        peso.setOnTouchListener(new View.OnTouchListener() {
+        peso.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
                 seleccionarPeso();
-                return false;
             }
         });
 
-        altura.setOnTouchListener(new View.OnTouchListener() {
+        altura.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
                 seleccionarAltura();
-                return false;
             }
         });
 
@@ -145,14 +158,14 @@ public class ActivityRegistrar extends AppCompatActivity {
                         .setMessage("hemos enviado un correo con su codigo de verificación")
                         .setView(taskEditText)
                         .setCancelable(true)
-                        .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         int task = Integer.valueOf(taskEditText.getText().toString());
-                                        if (codigo == task){
+                                        if (codigo == task) {
                                             validarDatos();
-                                            Toast.makeText(getApplicationContext(),"codigo valido",Toast.LENGTH_SHORT).show();
-                                        }else{
-                                            Toast.makeText(getApplicationContext(),"codigo invalido",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "codigo valido", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "codigo invalido", Toast.LENGTH_SHORT).show();
                                         }
 
                                         //validarContrasenia();
@@ -169,8 +182,6 @@ public class ActivityRegistrar extends AppCompatActivity {
                 alertDialog.show();
 
 
-
-
             }
         });
 
@@ -182,7 +193,7 @@ public class ActivityRegistrar extends AppCompatActivity {
                 String cadena = adapterView.getSelectedItem().toString();
 
                 //Quitar los caracteres del combobox para obtener solo el codigo del pais
-                codigoPaisSeleccionado = Integer.valueOf(extraerNumeros(cadena).toString().replace("]","").replace("[",""));
+                codigoPaisSeleccionado = Integer.valueOf(extraerNumeros(cadena).toString().replace("]", "").replace("[", ""));
 
                 //Toast.makeText(getApplicationContext(),"usuario id: "+codigoPaisSeleccionado, Toast.LENGTH_SHORT).show();
             }
@@ -213,6 +224,40 @@ public class ActivityRegistrar extends AppCompatActivity {
                 GaleriaImagenes();
             }
         });
+
+        //Inicio de codigo Fecha-------------------------------------------------------------
+        mDisplayDate = (TextView) findViewById(R.id.rtxtFechaNacimiento);
+
+        //--------------------------------------------------------
+        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        ActivityRegistrar.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d(TAG, "onDateSet: mm/dd/yyy: " + day  + "/" + month + "/" + year);
+
+                String date =  day  + "/" + month + "/" + year;
+                mDisplayDate.setText(date);
+            }
+        };
+        //---------------------Fin de codigo de la fecha-------------------------------------------
 
     }
 

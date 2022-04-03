@@ -68,7 +68,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
 
     EditText txtNombre,txtApellido;
-    EditText peso, altura;
+    TextView peso, altura;
     TextView txtFechaNac;
     Spinner SpiPais;
     Button btnActualizar,btnTomarFoto,btnSelectGaleria,btnAtras;
@@ -87,22 +87,20 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_perfil);
-        peso =  (EditText) findViewById(R.id.actuPeso);
-        altura =  (EditText) findViewById(R.id.actuAltura);
+        peso =  (TextView) findViewById(R.id.actuPeso);
+        altura =  (TextView) findViewById(R.id.actuAltura);
 
-        peso.setOnTouchListener(new View.OnTouchListener() {
+        peso.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
                 seleccionarPeso();
-                return false;
             }
         });
 
-        altura.setOnTouchListener(new View.OnTouchListener() {
+        altura.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View view) {
                 seleccionarAltura();
-                return false;
             }
         });
 
@@ -217,8 +215,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
-                startActivity(intent);
+                finish();
 
             }
         });
@@ -302,6 +299,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     Toast.makeText(getApplicationContext(), "String Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

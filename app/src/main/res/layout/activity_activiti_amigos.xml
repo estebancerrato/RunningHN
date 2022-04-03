@@ -21,6 +21,12 @@
         android:hint="Buscar"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Listado de amigos:" />
+
     <ListView
         android:id="@+id/listaMisAmigos"
         android:layout_width="match_parent"
