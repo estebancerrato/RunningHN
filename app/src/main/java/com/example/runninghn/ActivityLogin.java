@@ -119,7 +119,7 @@ public class ActivityLogin extends AppCompatActivity {
                             JSONObject RowMensaje = mensajeArray.getJSONObject(i);
                             mensaje = RowMensaje.getString("mensaje");
                             codigo = RowMensaje.getString("codigo_usuario");
-
+                            RestApiMethods.correo = txtcorreo.getText().toString();
                             RestApiMethods.codigo_usuario = codigo;
                         }
 
@@ -138,9 +138,10 @@ public class ActivityLogin extends AppCompatActivity {
                                 editor.commit();
                             }
 
+
                             Toast.makeText(getApplicationContext(), "Response " + mensaje, Toast.LENGTH_SHORT).show();
-                            //Intent intent = new Intent(getApplicationContext(),ActivityNuevaCarrera.class);
                             Intent intent = new Intent(getApplicationContext(),ActivityTablero.class);
+                            intent.putExtra("codigo_usuario", codigo);
                             startActivity(intent);
                             finish();
                         }else{

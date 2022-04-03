@@ -75,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        obtenerRecorrido("1111140");
+        obtenerRecorrido(getIntent().getStringExtra("codigo_actividad"));
         ejecutar();
         mMap.getUiSettings().setZoomControlsEnabled(true);
 

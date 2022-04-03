@@ -9,16 +9,19 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="530dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="386dp"
+        android:layout_height="712dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
+
             <TextView
                 android:id="@+id/perbtnAtras"
                 android:layout_width="wrap_content"
@@ -26,11 +29,12 @@
                 android:layout_weight="1"
                 android:background="#8be27e"
                 android:fontFamily="@font/oceanwidesemibold"
-                android:textSize="24sp"
-                android:textColor="@color/white"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="Regresar" />
+                android:text="Regresar"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
             <ImageView
                 android:id="@+id/fhImage"
                 android:layout_width="match_parent"
@@ -51,6 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
@@ -68,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="date"
                 android:textSize="20sp" />
@@ -85,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
@@ -94,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ptsans_regular"
-                android:text="Telefono"
+                android:text="Teléfono"
                 android:textSize="16sp" />
 
             <EditText
@@ -102,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="phone"
                 android:textSize="20sp" />
@@ -119,6 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:enabled="false"
                 android:fontFamily="@font/ptsans_regular"
                 android:inputType="textEmailAddress"
                 android:textSize="20sp" />
@@ -161,6 +170,7 @@
                     android:layout_width="181dp"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="@font/ptsans_regular"
                     android:hint="lb"
                     android:inputType="number"
@@ -171,6 +181,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="@font/ptsans_regular"
                     android:hint="cm"
                     android:inputType="numberSigned|text"
@@ -178,46 +189,23 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/perfilbtnActualizar"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="36dp"
+                android:background="#8be27e"
+                android:fontFamily="@font/oceanwidesemibold"
+                android:gravity="center"
+                android:text="Actualizar"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/perfilbtnEditar"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:background="#8be27e"
-        android:fontFamily="@font/oceanwidesemibold"
-        android:text="Editar"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-    <TextView
-        android:id="@+id/perfilbtnActualizar"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="90dp"
-        android:background="#8be27e"
-        android:fontFamily="@font/oceanwidesemibold"
-        android:text="Actualizar"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView3"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

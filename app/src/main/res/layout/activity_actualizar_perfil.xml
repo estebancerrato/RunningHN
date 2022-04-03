@@ -90,15 +90,14 @@
                 android:text="Fecha Nacimiento" />
 
             <TextView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:hint="Fecha"
-                android:background="@drawable/stilofechas"
                 android:id="@+id/actuFechaNac"
-                android:layout_marginTop="5dp"
-                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:textSize="15sp"/>
+                android:layout_marginTop="5dp"
+                android:hint="Fecha"
+                android:padding="10dp"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/lblPais"
@@ -118,12 +117,14 @@
                 android:layout_height="wrap_content"
                 android:text="Peso" />
 
-            <EditText
+            <TextView
                 android:id="@+id/actuPeso"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="31dp"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="Seleccionar peso"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -131,12 +132,14 @@
                 android:layout_height="wrap_content"
                 android:text="Altura" />
 
-            <EditText
+            <TextView
                 android:id="@+id/actuAltura"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:ems="10"
-                android:inputType="numberSigned|text" />
+                android:inputType="numberSigned|text"
+                android:text="Seleccionar altura"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/actbtnActualizar"

@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -18,6 +19,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +28,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,8 +67,8 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
 
 
-
-    EditText txtNombre,txtApellido,txtPeso,txtAltura;
+    EditText txtNombre,txtApellido;
+    TextView peso, altura;
     TextView txtFechaNac;
     Spinner SpiPais;
     Button btnActualizar,btnTomarFoto,btnSelectGaleria,btnAtras;
@@ -83,8 +87,22 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actualizar_perfil);
+        peso =  (TextView) findViewById(R.id.actuPeso);
+        altura =  (TextView) findViewById(R.id.actuAltura);
 
+        peso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionarPeso();
+            }
+        });
 
+        altura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                seleccionarAltura();
+            }
+        });
 
         //Inicio de codigo Fecha-------------------------------------------------------------
         mDisplayDate = (TextView) findViewById(R.id.actuFechaNac);
@@ -130,8 +148,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         txtApellido =  (EditText) findViewById(R.id.actutxtapellidos);
         txtFechaNac =  (TextView) findViewById(R.id.actuFechaNac);
         SpiPais =  (Spinner)  findViewById(R.id.actucmbPais);
-        txtPeso =  (EditText) findViewById(R.id.actuPeso);
-        txtAltura =  (EditText) findViewById(R.id.actuAltura);
+
         btnActualizar = (Button) findViewById(R.id.actbtnActualizar);
         btnTomarFoto = (Button) findViewById(R.id.actuTomarFoto);
         btnSelectGaleria = (Button) findViewById(R.id.actugaleria);
@@ -150,11 +167,14 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         txtNombre.setText(nombres);
         txtApellido.setText(apellidos);
         txtFechaNac.setText(fechaNac);
-        txtPeso.setText(peso);
-        txtAltura.setText(altura);
+        this.peso.setText(peso);
+        this.altura.setText(altura);
         mostrarFoto(fotoString);
 
         comboboxPaises();
+
+
+
         SpiPais.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -195,11 +215,12 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
-                startActivity(intent);
+                finish();
 
             }
         });
+
+
 
     }
 
@@ -264,8 +285,8 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         parametros.put("nombres", txtNombre.getText().toString());
         parametros.put("apellidos", txtApellido.getText().toString());
         parametros.put("fecha_nac", txtFechaNac.getText().toString());
-        parametros.put("peso", txtPeso.getText().toString());
-        parametros.put("altura", txtAltura.getText().toString());
+        parametros.put("peso", peso.getText().toString());
+        parametros.put("altura", altura.getText().toString());
         parametros.put("email", correo);
         parametros.put("codigo_pais", codigoPaisSeleccionado+"");
         parametros.put("foto", fotoString2);
@@ -278,6 +299,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     Toast.makeText(getApplicationContext(), "String Response " + response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -383,6 +405,78 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             }
         });
         queue.add(stringRequest);
+    }
+    //------USO DE NUMBERPICKER DE SELECCION DE DATOS. ----------------------------
+    private void seleccionarPeso(){
+        LayoutInflater inflater = this.getLayoutInflater();
+        View item = inflater.inflate(R.layout.pickerpeso, null);
+        NumberPicker picker1= (NumberPicker) item.findViewById(R.id.number1);
+        NumberPicker picker2= (NumberPicker) item.findViewById(R.id.number2);
+
+        picker1.setMaxValue(999);
+        picker1.setMinValue(0);
+        picker2.setMaxValue(9);
+        picker2.setMinValue(0);
+        picker1.setValue(100);
+
+        NumberPicker.OnValueChangeListener changeListener = new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker1, int oldVal, int newVal) {
+                peso.setText(picker1.getValue()+" . "+picker2.getValue());
+
+            }
+        };
+
+        NumberPicker.OnValueChangeListener change = new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker2, int oldVal, int newVal) {
+                peso.setText(picker1.getValue()+" . "+picker2.getValue());
+            }
+        };
+
+        picker1.setOnValueChangedListener(changeListener);
+        picker2.setOnValueChangedListener(change);
+
+
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setView(item);
+        builder.setTitle("Peso");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
+    }
+    private void seleccionarAltura(){
+        LayoutInflater inflater = this.getLayoutInflater();
+        View item = inflater.inflate(R.layout.pickeraltura, null);
+        NumberPicker picker1= (NumberPicker) item.findViewById(R.id.numberpickerAltura);
+        picker1.setMinValue(0);
+        picker1.setMaxValue(300);
+        picker1.setValue(100);
+
+        NumberPicker.OnValueChangeListener changeListener = new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker1, int oldVal, int newVal) {
+                altura.setText(picker1.getValue()+"");
+
+            }
+        };
+
+        picker1.setOnValueChangedListener(changeListener);
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setView(item);
+        builder.setTitle("Seleccione su altura");
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.show();
     }
 
 

@@ -45,7 +45,7 @@ import java.util.HashMap;
 
 public class Activity_Perfil extends AppCompatActivity {
 
-EditText txtnombre,txtpais,txtpeso,txtaltu;
+EditText txtnombre,txtpais,txtpeso,txtaltu, txtfechaNacimiento, txtcorreo, txttelefono;
 TextView btnEditar,btnAtras;   //OJOOOOOOOOOOOOOOO SE LOS CAMBIE A TEXTVIEW
 ImageView perfilfoto;
 Usuario usuario;
@@ -58,14 +58,17 @@ String email;
         setContentView(R.layout.activity_perfil);
 
         txtnombre = (EditText) findViewById(R.id.fhtxtnombre);
+        txtfechaNacimiento = (EditText) findViewById(R.id.fhfecha);
+        txtcorreo = (EditText) findViewById(R.id.fhcorreo);
         txtpais = (EditText) findViewById(R.id.fhtxtPais);
         txtpeso = (EditText) findViewById(R.id.fhpeso);
         txtaltu= (EditText) findViewById(R.id.fhaltura);
+        txttelefono= (EditText) findViewById(R.id.fhtelefono);
         perfilfoto = (ImageView) findViewById(R.id.fhImage);
-        btnEditar = (TextView) findViewById(R.id.perfilbtnEditar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
+        btnEditar = (TextView) findViewById(R.id.perfilbtnActualizar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
         btnAtras = (TextView) findViewById(R.id.perbtnAtras);
 
-        email = RestApiMethods.correo;
+        email = ActivityTablero.tablero_correo;
 
         listarUsuarios(email);
         
@@ -80,8 +83,7 @@ String email;
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ActivityPrincipal.class);
-                startActivity(intent);
+                finish();
 
             }
         });
@@ -114,12 +116,18 @@ String email;
                                 RowUsuario.getString("email"),
                                 RowUsuario.getString("peso"),
                                 RowUsuario.getString("altura"),
-                                RowUsuario.getString("foto"));
+                                RowUsuario.getString("foto"),
+                                RowUsuario.getString("telefono")
+                        );
 
                         txtnombre.setText(usuario.getNombres()+" "+usuario.getApellidos());
+                        txtfechaNacimiento.setText(usuario.getFechaNac());
                         txtpeso.setText(usuario.getPeso());
                         txtaltu.setText(usuario.getAltura());
                         txtpais.setText(usuario.getPais());
+                        txtcorreo.setText(usuario.getCorreo());
+                        txttelefono.setText(usuario.getTelefono());
+
                         mostrarFoto(usuario.getFoto().toString());
 
                     }
