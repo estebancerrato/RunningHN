@@ -149,6 +149,8 @@ public class ActivitiAmigos extends AppCompatActivity {
                                 .setPositiveButton("Si",new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         eliminarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
+                                        startActivity(new Intent(getApplicationContext(), ActivitiAmigos.class));
+                                        finish();
 
                                     }
                                 })

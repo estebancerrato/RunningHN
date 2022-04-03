@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -49,6 +50,7 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 
     Usuario usuario;
     TextView txtnombreCompleto;
+    Button btnAtras;
     AdaptadorUsuario adaptador;
 
     private final ArrayList<Usuario> listaUsuarios = new ArrayList<>();
@@ -65,6 +67,15 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         adaptador = new AdaptadorUsuario(this);
         String email = RestApiMethods.correo;
         listarUsuarios(email);
+
+        btnAtras = (Button) findViewById(R.id.addAmbtnAtras);
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inten = new Intent(getApplicationContext(),ActivitiAmigos.class);
+                startActivity(inten);
+            }
+        });
     }
 //consulta en la base de datos el pais del correo que se logueo, luego manda a llamar el listado de personas de ese pais
     private void listarUsuarios(String email) {
@@ -172,6 +183,8 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                                 .setPositiveButton("Si",new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 agregarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
+                                                startActivity(new Intent(getApplicationContext(), ActivityAgregarAmigos.class));
+                                                finish();
                                             }
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
