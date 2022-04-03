@@ -195,6 +195,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActualizarDatos(email);
+
             }
         });
 
@@ -313,6 +314,9 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             }
         });
         requestQueue.add(jsonObjectRequest);
+
+        Intent intent = new Intent(getApplicationContext(),Activity_Perfil.class);
+        startActivity(intent);
     }
 
     //-------------------------------------------------------------------------------------------------------------------
