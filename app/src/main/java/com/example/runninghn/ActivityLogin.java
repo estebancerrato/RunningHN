@@ -42,7 +42,7 @@ public class ActivityLogin extends AppCompatActivity {
     CheckBox Recordar;
     final Context context = this;
 
-    SharedPreferences mSharedPrefs;
+    SharedPreferences mSharedPrefs,mSharedPrefsPublico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +89,12 @@ public class ActivityLogin extends AppCompatActivity {
         String pass = mSharedPrefs.getString("password","");
         txtcorreo.setText(user);
         txtcontrasenia.setText(pass);
+//========CREDENCIALES PUBLICAS PARA LLAMAR EN LAS ACTIVIDADES Y EVITAR QUE LA INFORMACION SE PIERDA====///
+        mSharedPrefsPublico = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+        String userPublic = mSharedPrefsPublico.getString("usuarioPublic","");
 
         if (txtcorreo.getText().length() == 0 || txtcontrasenia.getText().length() ==0){
-            Toast.makeText(getApplicationContext(), "Bienvenido ", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "Bienvenido ", Toast.LENGTH_SHORT).show();
         }else {
             Recordar.setChecked(true);
             loginUsuario(user, pass);
@@ -137,6 +140,13 @@ public class ActivityLogin extends AppCompatActivity {
                                 editor.putString("password","");
                                 editor.commit();
                             }
+
+                            //==============USAR CEDENCIALES PUBLICAMENTE==============///
+                            mSharedPrefsPublico = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editorPublico = mSharedPrefsPublico.edit();
+                            String userPublic = txtcorreo.getText().toString();
+                            editorPublico.putString("usuarioPublic",userPublic);
+                            editorPublico.commit();
 
 
                             //Toast.makeText(getApplicationContext(), "Response " + mensaje, Toast.LENGTH_SHORT).show();
