@@ -45,7 +45,7 @@ import java.util.HashMap;
 
 public class Activity_Perfil extends AppCompatActivity {
 
-EditText txtnombre,txtpais,txtpeso,txtaltu, txtfechaNacimiento, txtcorreo;
+EditText txtnombre,txtpais,txtpeso,txtaltu, txtfechaNacimiento, txtcorreo, txttelefono;
 TextView btnEditar,btnAtras;   //OJOOOOOOOOOOOOOOO SE LOS CAMBIE A TEXTVIEW
 ImageView perfilfoto;
 Usuario usuario;
@@ -63,6 +63,7 @@ String email;
         txtpais = (EditText) findViewById(R.id.fhtxtPais);
         txtpeso = (EditText) findViewById(R.id.fhpeso);
         txtaltu= (EditText) findViewById(R.id.fhaltura);
+        txttelefono= (EditText) findViewById(R.id.fhtelefono);
         perfilfoto = (ImageView) findViewById(R.id.fhImage);
         btnEditar = (TextView) findViewById(R.id.perfilbtnActualizar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
         btnAtras = (TextView) findViewById(R.id.perbtnAtras);
@@ -115,7 +116,9 @@ String email;
                                 RowUsuario.getString("email"),
                                 RowUsuario.getString("peso"),
                                 RowUsuario.getString("altura"),
-                                RowUsuario.getString("foto"));
+                                RowUsuario.getString("foto"),
+                                RowUsuario.getString("telefono")
+                        );
 
                         txtnombre.setText(usuario.getNombres()+" "+usuario.getApellidos());
                         txtfechaNacimiento.setText(usuario.getFechaNac());
@@ -123,6 +126,7 @@ String email;
                         txtaltu.setText(usuario.getAltura());
                         txtpais.setText(usuario.getPais());
                         txtcorreo.setText(usuario.getCorreo());
+                        txttelefono.setText(usuario.getTelefono());
 
                         mostrarFoto(usuario.getFoto().toString());
 

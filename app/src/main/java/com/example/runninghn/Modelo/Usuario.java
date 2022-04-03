@@ -16,6 +16,10 @@ public class Usuario
     public String Longitud;
     public String foto;
 
+
+
+    public String telefono;
+
     public Usuario(int codigo_usuario, String nombres, String apellidos,String foto) {
         this.nombres = nombres;
         this.id = codigo_usuario;
@@ -24,7 +28,7 @@ public class Usuario
 
     }
 
-    public Usuario(int id, String nombres, String apellidos, String fechaNac, String pais, int codigo_pais, String correo, String peso, String altura, String foto) {
+    public Usuario(int id, String nombres, String apellidos, String fechaNac, String pais, int codigo_pais, String correo, String peso, String altura, String foto, String telefono) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -35,6 +39,7 @@ public class Usuario
         this.peso = peso;
         this.altura = altura;
         this.foto = foto;
+        this.telefono = telefono;
     }
 
     public Usuario(int id, String nombres, String apellidos, String correo,String contraseña, String peso, String altura, String latitud, String longitud, String foto) {
@@ -167,5 +172,12 @@ public class Usuario
 
     public void setCodigo_pais(int codigo_pais) {
         this.codigo_pais = codigo_pais;
+    }
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

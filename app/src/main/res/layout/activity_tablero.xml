@@ -46,7 +46,7 @@
                         app:srcCompat="@drawable/user" />
 
                     <ImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/tablerobtnAmigos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -55,7 +55,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/button2"
+                    android:id="@+id/tablerbtnVerProgreso"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"

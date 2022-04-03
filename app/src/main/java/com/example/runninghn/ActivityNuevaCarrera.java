@@ -12,13 +12,16 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -47,7 +50,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
 
     public static Button btnComenzar;
-    EditText txtLat,txtLon;
+    EditText txtLat,txtLon, txtTiempo;
 
     public static String latitud = "";
     public static String longitud = "";
@@ -56,13 +59,25 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
     final String[] codigo_actividad = new String[1];
 
 
+    //-----tiempo
+    private int segundos;
+    private boolean running1;
+    private boolean wasRunning;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
+        //-----tiempo
+        if(savedInstanceState != null){
+            savedInstanceState.getInt("segundos");
+            savedInstanceState.getInt("running1");
+            savedInstanceState.getInt("wasRunning");
 
 
-
+        }
+        //-----------------------
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -71,12 +86,13 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
         }
 
 
-
+        iniciarTiempo();
 
         btnComenzar = (Button) findViewById(R.id.btnComenzar);
 
         txtLat = (EditText) findViewById(R.id.txtLat);
         txtLon = (EditText) findViewById(R.id.txtLon);
+        txtTiempo = (EditText) findViewById(R.id.nctiempo);
 
 
 
@@ -88,9 +104,13 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                     longitud = txtLon.getText().toString();
                     btnComenzar.setText("DETENER");
 
+                    running1 =true;
+
+
                 }else if (btnComenzar.getText().equals("DETENER")){
                     try {
-                        guardarRecorrido(RestApiMethods.codigo_usuario,DashboardFragment.km);
+                        String tiempo = txtTiempo.getText().toString();
+                        guardarRecorrido(RestApiMethods.codigo_usuario,DashboardFragment.km,tiempo);
 
 
                         new CountDownTimer(5000, 1000) {
@@ -170,12 +190,13 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
     //-------------------------GUARDAR RECORRIDO--------------------------
 
-    private void guardarRecorrido(String codigoUsuario, Double distancia) {
+    private void guardarRecorrido(String codigoUsuario, Double distancia,String tiempo) {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         HashMap<String, String> parametros = new HashMap<>();
         parametros.put("codigo_usuario", codigoUsuario);
         parametros.put("distancia", distancia+"");
+        parametros.put("tiempo",tiempo);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, RestApiMethods.GuardarActidad,
                 new JSONObject(parametros), new Response.Listener<JSONObject>() {
             @Override
@@ -183,7 +204,6 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                 try {
 
                     codigo_actividad[0] = String.valueOf(response.getString("mensaje"));
-
                     Toast.makeText(getApplicationContext(), "Actividad guardada exitosamente"+ codigo_actividad[0], Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e) {
@@ -237,6 +257,39 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                 remove(getSupportFragmentManager().findFragmentById(R.id.navigation_dashboard));
         finish();
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("segundos", segundos);
+        outState.putBoolean("running", running1);
+        outState.putBoolean("running", wasRunning);
+
+    }
+    private void iniciarTiempo() {
+        TextView timeview = findViewById(R.id.cronometro);
+
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                int hours = segundos / 360;
+                int minutos = (segundos % 360) / 60;
+                int secs = segundos % 60;
+
+                String time = String.format(Locale.getDefault(),
+                        "%d:%02d:%02d",
+                        hours,minutos,secs);
+                txtTiempo.setText(time);
+                if(running1){
+                    segundos++;
+                }
+                handler.postDelayed(this,1000);
+            }
+        });
+    }
+
 
 
 

@@ -12,7 +12,8 @@ import com.example.runninghn.Modelo.RestApiMethods;
 
 public class ActivityTablero extends AppCompatActivity {
 
-    TextView btnNuevaCarrera;
+    TextView btnNuevaCarrera,btnVerProgreso;
+    ImageView btnMostrarAmigos;
     public static final String tablero_correo = RestApiMethods.correo;
     public static final String tablero_codigo_usuario = RestApiMethods.codigo_usuario;
 
@@ -23,6 +24,9 @@ public class ActivityTablero extends AppCompatActivity {
 
         ImageView perfil = findViewById(R.id.perfil);
         btnNuevaCarrera = findViewById(R.id.btnNuevaCarrera);
+        btnVerProgreso = findViewById(R.id.tablerbtnVerProgreso);
+        btnMostrarAmigos = findViewById(R.id.tablerobtnAmigos);
+
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,6 +38,20 @@ public class ActivityTablero extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ActivityNuevaCarrera.class);
+                startActivity(intent);
+            }
+        });
+        btnVerProgreso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),Progreso_ListadoActividades.class);
+                startActivity(intent);
+            }
+        });
+        btnMostrarAmigos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ActivitiAmigos.class);
                 startActivity(intent);
             }
         });

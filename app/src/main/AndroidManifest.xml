@@ -49,10 +49,13 @@
         android:theme="@style/Theme.RunningHN"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ActivitiAmigos"
+            android:name=".Progreso_ListadoActividades"
             android:exported="true">
 
         </activity>
+        <activity
+            android:name=".ActivitiAmigos"
+            android:exported="true"></activity>
         <!--
              You can find your app ID in the AdMob UI. For android:value,
             insert your own AdMob app ID in quotes, as shown below.
@@ -68,10 +71,10 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".Activity_Perfil"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityAgregarAmigos"
-            android:exported="true"></activity>
+            android:exported="true" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -96,15 +99,13 @@
             android:exported="true" />
         <activity
             android:name=".ActivityRegistrar"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityAnuncio4"
             android:exported="false" />
         <activity
             android:name=".ActivityLogin"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ActivityAnuncio1"
             android:exported="true" />
@@ -119,24 +120,21 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MapsActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityNuevaCarrera"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Activity_Actualizar_Perfil"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ActivityTablero"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"></activity>
     </application>
 
 </manifest>
