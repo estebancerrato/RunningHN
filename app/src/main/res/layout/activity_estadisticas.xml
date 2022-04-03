@@ -14,14 +14,15 @@
         android:weightSum="10">
 
         <TextView
+            android:id="@+id/textViewEstadisAtras"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="18dp"
-            android:text="Atrás |"
             android:layout_weight="1"
+            android:fontFamily="@font/oceanwidesemibold"
             android:gravity="center"
+            android:text="Atrás |"
             android:textColor="@color/white"
-            android:fontFamily="@font/oceanwidesemibold"></TextView>
+            android:textSize="18dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,10 +72,11 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/TextViewRecorridoMes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_marginStart="25dp"
-                    android:layout_margintop="10dp"
                     android:fontFamily="@font/oceanwidesemibold"
                     android:text="300 km"
                     android:textColor="@color/black"
@@ -107,7 +109,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="415dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
@@ -117,15 +119,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:fontFamily="@font/oceanwidesemibold"
-                    android:text="Calorías Mensuales"
+                    android:text="Calorías Mensuales (Kcal)"
                     android:textColor="@color/black"
                     android:textSize="20dp"></TextView>
 
                 <TextView
+                    android:id="@+id/TextViewKcalMes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
-                    android:layout_margintop="10dp"
                     android:fontFamily="@font/oceanwidesemibold"
                     android:text="3000 Kcal"
                     android:textColor="@color/black"
@@ -221,14 +223,15 @@
                             android:textSize="16dp"></TextView>
 
                         <TextView
+                            android:id="@+id/TextViewRecorridoSeAnt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="50dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/oceanwidesemibold"
                             android:text="300km"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:layout_marginTop="25dp"
-                            android:layout_marginHorizontal="50dp"
-                            android:fontFamily="@font/oceanwidesemibold"></TextView>
+                            android:textSize="20dp"></TextView>
 
                     </LinearLayout>
 
@@ -248,14 +251,15 @@
                             android:textSize="16dp"></TextView>
 
                         <TextView
+                            android:id="@+id/TextViewRecorridoSeActual"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="50dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/oceanwidesemibold"
                             android:text="200km"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:layout_marginTop="25dp"
-                            android:layout_marginHorizontal="50dp"
-                            android:fontFamily="@font/oceanwidesemibold"></TextView>
+                            android:textSize="20dp"></TextView>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -318,14 +322,15 @@
                             android:textSize="16dp"></TextView>
 
                         <TextView
+                            android:id="@+id/TextViewRecorridoMesAnterio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="50dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/oceanwidesemibold"
                             android:text="300km"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:layout_marginTop="25dp"
-                            android:layout_marginHorizontal="50dp"
-                            android:fontFamily="@font/oceanwidesemibold"></TextView>
+                            android:textSize="20dp"></TextView>
 
                     </LinearLayout>
 
@@ -345,14 +350,15 @@
                             android:textSize="16dp"></TextView>
 
                         <TextView
+                            android:id="@+id/TextViewRecorridoMesActual"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="50dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/oceanwidesemibold"
                             android:text="200km"
                             android:textColor="@color/black"
-                            android:textSize="20dp"
-                            android:layout_marginTop="25dp"
-                            android:layout_marginHorizontal="50dp"
-                            android:fontFamily="@font/oceanwidesemibold"></TextView>
+                            android:textSize="20dp"></TextView>
 
                     </LinearLayout>
                 </LinearLayout>

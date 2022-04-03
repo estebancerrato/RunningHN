@@ -17,6 +17,7 @@ public class RestApiMethods {
     private static final String detallesguardarActividad = "/API/creardetalleactividad.php";
     private static final String EliminarAmigos = "/API/eliminaramigo.php";
     private static final String listaActividades = "/API/listaactividades.php";
+    private static final String mostrarEstadistica = "/API/estadisticas.php";
 
 
     //metodo get
@@ -35,6 +36,7 @@ public class RestApiMethods {
     public static final String EndPointListaAmigosAdd = StringHttp + ipaddress + GetAmigosAgregados;
     public static final String EndPointEliminarAmigosAdd = StringHttp + ipaddress + EliminarAmigos;
     public static final String ListarActividades = StringHttp + ipaddress + listaActividades;
+    public static final String Estadistico = StringHttp + ipaddress + mostrarEstadistica;
 
     public static String EndPointBuscarUsuario;
 

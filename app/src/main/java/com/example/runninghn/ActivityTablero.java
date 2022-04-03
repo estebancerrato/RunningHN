@@ -12,7 +12,7 @@ import com.example.runninghn.Modelo.RestApiMethods;
 
 public class ActivityTablero extends AppCompatActivity {
 
-    TextView btnNuevaCarrera,btnVerProgreso;
+    TextView btnNuevaCarrera,btnVerProgreso, btnEstadistica;
     ImageView btnMostrarAmigos;
     public static final String tablero_correo = RestApiMethods.correo;
     public static final String tablero_codigo_usuario = RestApiMethods.codigo_usuario;
@@ -26,6 +26,7 @@ public class ActivityTablero extends AppCompatActivity {
         btnNuevaCarrera = findViewById(R.id.btnNuevaCarrera);
         btnVerProgreso = findViewById(R.id.tablerbtnVerProgreso);
         btnMostrarAmigos = findViewById(R.id.tablerobtnAmigos);
+        btnEstadistica = findViewById(R.id.tablerobtnEstadistica);
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +53,13 @@ public class ActivityTablero extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),ActivitiAmigos.class);
+                startActivity(intent);
+            }
+        });
+        btnEstadistica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ActivityEstadisticas.class);
                 startActivity(intent);
             }
         });

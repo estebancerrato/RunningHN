@@ -81,7 +81,7 @@
                     android:textSize="24dp" />
 
                 <TextView
-                    android:id="@+id/button4"
+                    android:id="@+id/tablerobtnEstadistica"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:layout_alignParentTop="true"

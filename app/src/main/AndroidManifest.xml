@@ -135,6 +135,10 @@
         <activity
             android:name=".ActivityTablero"
             android:exported="true"></activity>
+        <activity
+            android:name=".ActivityEstadisticas"
+            android:exported="false" />
+
     </application>
 
 </manifest>
