@@ -28,7 +28,7 @@
             <ImageView
                 android:id="@+id/cimgfoto"
                 android:layout_width="80dp"
-                android:layout_height="60dp"
+                android:layout_height="80dp"
                 android:layout_weight="2"
                 android:maxWidth="80dp"
                 android:maxHeight="80dp"

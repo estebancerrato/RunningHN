@@ -86,7 +86,9 @@ String email;
         btnEditar = (TextView) findViewById(R.id.perfilbtnActualizar); ////OJOOOOOOOO SE LOS CAMBIE A TEXTVIEW
         btnAtras = (TextView) findViewById(R.id.perbtnAtras);
 
-        email = ActivityTablero.tablero_correo;
+        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+        String correo = mSharedPrefs.getString("correo","");
+        email = correo;
 
         listarUsuarios(email);
         
