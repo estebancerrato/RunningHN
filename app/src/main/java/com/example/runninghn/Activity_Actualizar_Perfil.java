@@ -379,8 +379,13 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
     //**Entrar a la carpeta de fotos del telefono**//
     private void GaleriaImagenes() {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(photoPickerIntent, RESULT_GALLERY_IMG);
+        /*Intent photoPickerIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(photoPickerIntent, RESULT_GALLERY_IMG);*/
+
+        Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"Seleccione la aplicacion"),RESULT_GALLERY_IMG);
+
     }
 
     List<Integer> extraerNumeros(String cadena) {

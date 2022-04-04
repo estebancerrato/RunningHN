@@ -310,7 +310,7 @@ public class ActivityRegistrar extends AppCompatActivity {
     private void GaleriaImagenes() {
         Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent,"Seleccione la aplicacion"), RESULT_GALLERY_IMG);
+        startActivityForResult(intent.createChooser(intent,"Seleccione la aplicacion"),RESULT_GALLERY_IMG);
     }
 
     //***Metodo para convertir imagen***//
