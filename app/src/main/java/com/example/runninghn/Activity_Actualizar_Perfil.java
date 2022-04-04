@@ -196,7 +196,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ActualizarDatos(email);
-
+                finish();
             }
         });
 

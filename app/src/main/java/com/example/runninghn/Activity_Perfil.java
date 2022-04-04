@@ -76,6 +76,7 @@ String email;
             @Override
             public void onClick(View view) {
                 editar();
+                finish();
             }
         });
 
