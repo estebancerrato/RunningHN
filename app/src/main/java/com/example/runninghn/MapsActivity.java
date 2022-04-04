@@ -134,20 +134,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     private void metodoEjecutar() {
         //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
-        LatLng pfinal = new LatLng(pilatitud.get(1),pilongitud.get(1));
-        LatLng pinicial =new LatLng(pilatitud.get(0), pilongitud.get(0));
-        mMap.addMarker(new MarkerOptions().position(pinicial).title("Posicion inicial").icon(BitmapDescriptorFactory.defaultMarker()));
-        mMap.addPolyline(new PolylineOptions().add(pfinal, pinicial).width(7).color(Color.RED).geodesic(true));
+        LatLng pfinal = null;
+        LatLng pinicial =null;
+
+        pinicial = new LatLng(pilatitud.get(0),pilongitud.get(0));
+        pfinal = new LatLng(pilatitud.get(1),pilongitud.get(1));
+
+        pfinal = new LatLng(pilatitud.get(0),pilongitud.get(0));
+
         for(int i = 0;i<pilatitud.size() ;i++)
         {
+            pfinal = pinicial;
             pinicial = new LatLng(pilatitud.get(i),pilongitud.get(i));
             mMap.addMarker(new MarkerOptions().position(pinicial).icon(BitmapDescriptorFactory.fromResource(R.drawable.corredor)));
-            mMap.addPolyline(new PolylineOptions().add(pfinal, pinicial).width(7).color(Color.RED).geodesic(true));
-            pfinal = pinicial;//actualizamos el punto inicial con el final
-            if (i == pilatitud.size()){
-                mMap.addMarker(new MarkerOptions().position(pfinal).title("Posicion Final").icon(BitmapDescriptorFactory.fromResource(R.drawable.descansando)));
-            }
+            mMap.addPolyline(new PolylineOptions().add(pinicial,pfinal ).width(7).color(Color.RED).geodesic(true));
         }
+        mMap.addMarker(new MarkerOptions().position(pfinal).icon(BitmapDescriptorFactory.fromResource(R.drawable.descansando)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pfinal, 15));
 
