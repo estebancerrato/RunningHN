@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -85,9 +86,9 @@ public class ActivityRegistrar extends AppCompatActivity {
     String para, asunto, mensaje;//Para datos del mensaje
 
     EditText nombres, apellidos, telefono, correo, contrasenia1, contrasenia2 ;
-    TextView peso, altura;
+    TextView peso, altura,txtMostrarContra;
     Spinner cmbpais;
-    Button btnguardar,btnTomaFoto,btnGaleria;
+    Button btnguardar,btnTomaFoto,btnGaleria,btnMostrarContra;
     String contrasenia;
     ImageView Foto;
 
@@ -126,8 +127,27 @@ public class ActivityRegistrar extends AppCompatActivity {
         btnguardar = (Button) findViewById(R.id.rbtnGuardar);
         btnTomaFoto = (Button) findViewById(R.id.rbtnTomarFoto);
         btnGaleria = (Button) findViewById(R.id.rbtngaleria);
+        btnMostrarContra = (Button) findViewById(R.id.arbtnMostrarContra);
 
         intent = new Intent(getApplicationContext(), ActivityRegistrar.class);//para obtener el contacto seleccionado mas adelante
+
+        btnMostrarContra.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        contrasenia1.setInputType(InputType.TYPE_CLASS_TEXT);
+                        contrasenia2.setInputType(InputType.TYPE_CLASS_TEXT);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        contrasenia1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        contrasenia2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
+                }
+                return true;
+            }
+        });
+
 
 
         Random random = new Random();
