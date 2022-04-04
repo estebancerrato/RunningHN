@@ -276,9 +276,9 @@ public class ActivityRegistrar extends AppCompatActivity {
         }else if(contrasenia2.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Reescriba su contraseña", Toast.LENGTH_LONG).show();
         }else if(peso.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Debe de escribir su peso", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Debe de seleccionar su peso", Toast.LENGTH_LONG).show();
         }else if(altura.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Debe de escribir su altura", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Debe de seleccionar su altura", Toast.LENGTH_LONG).show();
         }else{
             validarContrasenia();
             //configurar_envio();
