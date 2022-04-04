@@ -10,43 +10,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:background="#8be27e"
+        android:weightSum="10">
 
+        <TextView
+            android:id="@+id/addAmbtnAtras"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/oceanwidesemibold"
+            android:gravity="center"
+            android:text="Atrás |"
+            android:textColor="@color/white"
+            android:textSize="18dp"></TextView>
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:textSize="24dp"
+            android:text="AGREGAR AMIGOS"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:fontFamily="@font/oceanwidesemibold"></TextView>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/addAmbtnAtras"
-                android:layout_width="106dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Atras" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="230dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Agregar amigos"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold|italic" />
-        </LinearLayout>
-
+            android:layout_weight="3"></LinearLayout>
     </LinearLayout>
+    Barra Superior
 
-    <ListView
-        android:id="@+id/listaAmigos"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
-        android:layout_height="wrap_content" />
+        <ListView
+            android:id="@+id/listaAmigos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </LinearLayout>

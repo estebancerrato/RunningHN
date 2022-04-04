@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -59,6 +60,7 @@ import java.util.regex.Pattern;
 
 public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
+    @Override public void onBackPressed() { }
 
     //Datos para fecha
 
@@ -73,7 +75,9 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
     EditText txtNombre,txtApellido,txtTelefono;
     TextView peso, altura,txtFechaNac;
     Spinner SpiPais;
-    Button btnActualizar,btnTomarFoto,btnSelectGaleria,btnAtras;
+    //Button btnActualizar,btnTomarFoto,btnSelectGaleria,btnAtras;
+    TextView btnActualizar;
+    LinearLayout btnTomarFoto,btnSelectGaleria;
     ImageView Foto;
     String fotoString,email;
     Bitmap imagen;
@@ -152,10 +156,15 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         txtTelefono =(EditText) findViewById(R.id.actxtTelefono);
         SpiPais =  (Spinner)  findViewById(R.id.actucmbPais);
 
-        btnActualizar = (Button) findViewById(R.id.actbtnActualizar);
-        btnTomarFoto = (Button) findViewById(R.id.actuTomarFoto);
-        btnSelectGaleria = (Button) findViewById(R.id.actugaleria);
-        btnAtras = (Button) findViewById(R.id.actubtnAtras);
+//        btnActualizar = (Button) findViewById(R.id.actbtnActualizar);
+//        btnTomarFoto = (Button) findViewById(R.id.actuTomarFoto);
+//        btnSelectGaleria = (Button) findViewById(R.id.actugaleria);
+
+        btnActualizar = findViewById(R.id.actbtnActualizar);
+        btnTomarFoto = findViewById(R.id.actuTomarFoto);
+        btnSelectGaleria = findViewById(R.id.actugaleria);
+
+        //btnAtras = findViewById(R.id.perbtnAtras);
         Foto =(ImageView) findViewById(R.id.actuImgView);
 
         email = getIntent().getStringExtra("email");
@@ -218,13 +227,12 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             }
         });
 
-        btnAtras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-
-            }
-        });
+//        btnAtras.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
 
 

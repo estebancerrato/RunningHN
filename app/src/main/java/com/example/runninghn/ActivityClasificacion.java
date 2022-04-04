@@ -1,5 +1,7 @@
 package com.example.runninghn;
 
+import static java.lang.Double.parseDouble;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -33,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -102,10 +105,29 @@ public class ActivityClasificacion extends AppCompatActivity {
             kilometro = item.findViewById(R.id.ckilometro);
             kcal = item.findViewById(R.id.cKcal);
 
+            //Conversion
+            double km = 0.0;
+            double kc = 0.0;
+            km = parseDouble(listaClasificacion.get(position).getKm());
+            kc = parseDouble(listaClasificacion.get(position).getKcal());
+
+            DecimalFormat df = new DecimalFormat("###.##");
+
+            int enterosKm = Integer.parseInt(Double.toString(km).substring(0, Double.toString(km).indexOf('.')));
+            int enterosKc = Integer.parseInt(Double.toString(kc).substring(0, Double.toString(kc).indexOf('.')));
+            if(Integer.toString(enterosKm).length()<=3){ kilometro.setText(km+"  "); }
+            if(Integer.toString(enterosKc).length()<=3){ kcal.setText(kc+"  "); }
+            if(Integer.toString(enterosKm).length()>3){ kilometro.setText(df.format(km/1000)+"K"); }
+            if(Integer.toString(enterosKc).length()>3){ kcal.setText(df.format(kc/1000)+"K"); }
+            if(Integer.toString(enterosKm).length()>6){ kilometro.setText(df.format(km/1000000)+"M"); }
+            if(Integer.toString(enterosKc).length()>6){ kcal.setText(df.format(kc/1000000)+"M"); }
+
+            //Fin Conversion
+
             top.setText(listaClasificacion.get(position).getTop());
             nombrecompleto.setText(listaClasificacion.get(position).getNombrecompleto());
-            kilometro.setText(listaClasificacion.get(position).getKm());
-            kcal.setText(listaClasificacion.get(position).getKcal());
+            //kilometro.setText(listaClasificacion.get(position).getKm());
+            //kcal.setText(listaClasificacion.get(position).getKcal());
             mostrarFoto(listaClasificacion.get(position).getFoto(),foto);
 
             return (item);

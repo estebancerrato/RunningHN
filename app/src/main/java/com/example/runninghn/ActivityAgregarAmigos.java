@@ -71,7 +71,8 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
 
     Usuario usuario;
     TextView txtnombreCompleto;
-    Button btnAtras;
+    //Button btnAtras;
+    TextView btnAtras;
     AdaptadorUsuario adaptador;
 
     private final ArrayList<Usuario> listaUsuarios = new ArrayList<>();
@@ -98,7 +99,8 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         //ocultar menu
 
 
-        btnAtras = (Button) findViewById(R.id.addAmbtnAtras);
+        //btnAtras = (Button) findViewById(R.id.addAmbtnAtras);
+        btnAtras = findViewById(R.id.addAmbtnAtras);
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -203,13 +205,50 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
             String nombrecompleto= listaUsuarios.get(position).getNombres()+" "+listaUsuarios.get(position).getApellidos();
             txtnombreCompleto.setText(nombrecompleto);
 
-            CheckBox cBox=(CheckBox)item.findViewById(R.id.checkBox);
-            cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+//            CheckBox cBox=(CheckBox)item.findViewById(R.id.checkBox);
+//            cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+//
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if (cBox.isChecked()){
+//
+//                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//                        alertDialogBuilder.setTitle("Añadir como amigo");
+//                        alertDialogBuilder
+//                                .setMessage("¿Desea añadir de amigo a "+nombrecompleto+" ?")
+//                                .setCancelable(false)
+//                                .setPositiveButton("Si",new DialogInterface.OnClickListener() {
+//                                            public void onClick(DialogInterface dialog, int id) {
+//                                                agregarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
+//                                                startActivity(new Intent(getApplicationContext(), ActivityAgregarAmigos.class));
+//                                                finish();
+//                                            }
+//                                })
+//                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog,int id) {
+//                                        cBox.setChecked(false);
+//                                        dialog.cancel();
+//                                    }
+//                                });
+//
+//
+//                        // create alert dialog
+//                        AlertDialog alertDialog = alertDialogBuilder.create();
+//                        alertDialog.show();
+//                    }else{
+//
+//                    }
+//
+//                    amigo = listaUsuarios.get(position).getId();
+//                }
+//            });
 
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (cBox.isChecked()){
+            ImageView cBox = item.findViewById(R.id.checkBox);
+            cBox.setImageResource(R.drawable.agregarlistaamigo);
+            cBox.setOnClickListener(new View.OnClickListener(){
 
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                         alertDialogBuilder.setTitle("Añadir como amigo");
                         alertDialogBuilder
                                 .setMessage("¿Desea añadir de amigo a "+nombrecompleto+" ?")
@@ -223,7 +262,6 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
-                                        cBox.setChecked(false);
                                         dialog.cancel();
                                     }
                                 });
@@ -232,9 +270,6 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
                         // create alert dialog
                         AlertDialog alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
-                    }else{
-
-                    }
 
                     amigo = listaUsuarios.get(position).getId();
                 }

@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,7 +75,8 @@ public class ActivitiAmigos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activiti_amigos);
-        Button btnAtras = findViewById(R.id.amigosbtnAtras);
+//        Button btnAtras = findViewById(R.id.amigosbtnAtras);
+        TextView btnAtras = findViewById(R.id.amigosbtnAtras);
 
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +90,9 @@ public class ActivitiAmigos extends AppCompatActivity {
         SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas", Context.MODE_PRIVATE);
         String idusuario = mSharedPrefs.getString("idusuario","");
         listarUsuarios(idusuario);
-        Button btnAgregarAmigo = findViewById(R.id.actbtnAgregarAmigo);
+        //Button btnAgregarAmigo = findViewById(R.id.actbtnAgregarAmigo);
+        LinearLayout btnAgregarAmigo = findViewById(R.id.actbtnAgregarAmigo);
+
         btnAgregarAmigo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,38 +166,69 @@ public class ActivitiAmigos extends AppCompatActivity {
             String nombrecompleto= listaUsuarios.get(position).getNombres()+" "+listaUsuarios.get(position).getApellidos();
             txtnombreCompleto.setText(nombrecompleto);
 
-            CheckBox cBox=(CheckBox)item.findViewById(R.id.checkBox);
-            cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            //CheckBox cBox=(CheckBox)item.findViewById(R.id.checkBox);
+            //cBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+                //
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                    if (cBox.isChecked()){
+//
+//                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//                        alertDialogBuilder.setTitle("Eliminar amigo");
+//                        alertDialogBuilder
+//                                .setMessage("¿Desea Eliminar de amigos a "+nombrecompleto+" ?")
+//                                .setCancelable(false)
+//                                .setPositiveButton("Si",new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int id) {
+//                                        eliminarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
+//                                        startActivity(new Intent(getApplicationContext(), ActivitiAmigos.class));
+//                                        finish();
+//                                    }
+//                                })
+//                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog,int id) {
+//                                        cBox.setChecked(false);
+//                                        dialog.cancel();
+//                                    }
+//                                });
+//                        // create alert dialog
+//                        AlertDialog alertDialog = alertDialogBuilder.create();
+//                        alertDialog.show();
+//                    }
+//
+//                    amigo = listaUsuarios.get(position).getId();
+//                }
+//            });
 
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (cBox.isChecked()){
+            ImageView cBox = item.findViewById(R.id.checkBox);
+            cBox.setOnClickListener(new View.OnClickListener(){
 
-                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                        alertDialogBuilder.setTitle("Eliminar amigo");
-                        alertDialogBuilder
-                                .setMessage("¿Desea Eliminar de amigos a "+nombrecompleto+" ?")
-                                .setCancelable(false)
-                                .setPositiveButton("Si",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        eliminarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
-                                        startActivity(new Intent(getApplicationContext(), ActivitiAmigos.class));
-                                        finish();
-                                    }
-                                })
-                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-                                        cBox.setChecked(false);
-                                        dialog.cancel();
-                                    }
-                                });
-                        // create alert dialog
-                        AlertDialog alertDialog = alertDialogBuilder.create();
-                        alertDialog.show();
-                    }
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    alertDialogBuilder.setTitle("Eliminar amigo");
+                    alertDialogBuilder
+                            .setMessage("¿Desea Eliminar de amigos a "+nombrecompleto+" ?")
+                            .setCancelable(false)
+                            .setPositiveButton("Si",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    eliminarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
+                                    startActivity(new Intent(getApplicationContext(), ActivitiAmigos.class));
+                                    finish();
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
 
                     amigo = listaUsuarios.get(position).getId();
                 }
             });
+
 
             return(item);
         }
