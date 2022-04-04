@@ -1,32 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActivityClasificacion">
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="362dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        android:text="Clasificacion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#8be27e"
+            android:weightSum="10">
 
-    <ListView
-        android:id="@+id/listadoClasificacion"
-        android:layout_width="389dp"
-        android:layout_height="610dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_bias="0.285" />
+            <TextView
+                android:id="@+id/textViewEstadisAtras"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/oceanwidesemibold"
+                android:gravity="center"
+                android:text="Atrás |"
+                android:textColor="@color/white"
+                android:textSize="18dp"></TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:textSize="24dp"
+                android:text="CLASIFICACIÓN"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:fontFamily="@font/oceanwidesemibold"></TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"></LinearLayout>
+
+
+        </LinearLayout>
+        Barra Superior
+
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/trofeo"
+                        android:layout_marginTop="25dp"
+                        android:layout_gravity="center"></ImageView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mejores Corredores"
+                        android:layout_gravity="center"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/oceanwidesemibold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="10dp"></TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_gravity="center"
+                        android:text="Clasificación"/>
+
+                    <ListView
+                        android:id="@+id/listadoClasificacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="508dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

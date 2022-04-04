@@ -18,15 +18,18 @@
                 android:id="@+id/clasiNumtop"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:text="1"
-                android:textSize="24sp" />
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ptsans_regular"
+                android:gravity="center"/>
 
             <ImageView
                 android:id="@+id/cimgfoto"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:maxWidth="80dp"
                 android:maxHeight="80dp"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -35,9 +38,12 @@
                 android:id="@+id/cNombreCompleto"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="Esteban Ariel Cerrato Pavon"
-                android:textSize="24sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ptsans_regular"
+                android:gravity="left"/>
 
             <TextView
                 android:id="@+id/ckilometro"
@@ -46,7 +52,10 @@
                 android:layout_weight="1"
                 android:minWidth="50dp"
                 android:text="30km"
-                android:textSize="24sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ptsans_regular"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/cKcal"
@@ -55,7 +64,10 @@
                 android:layout_weight="1"
                 android:minWidth="50dp"
                 android:text="120 Kcal"
-                android:textSize="24sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/ptsans_regular"
+                android:gravity="center"/>
         </TableRow>
 
     </TableLayout>
