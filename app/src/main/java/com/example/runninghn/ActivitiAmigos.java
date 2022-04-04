@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -84,9 +85,9 @@ public class ActivitiAmigos extends AppCompatActivity {
 
         listViewCustomAdapter = findViewById(R.id.listaMisAmigos);
         adaptador = new ActivitiAmigos.AdaptadorUsuario(this);
-
-        String codigoUser = RestApiMethods.codigo_usuario;
-        listarUsuarios(codigoUser);
+        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas", Context.MODE_PRIVATE);
+        String idusuario = mSharedPrefs.getString("idusuario","");
+        listarUsuarios(idusuario);
         Button btnAgregarAmigo = findViewById(R.id.actbtnAgregarAmigo);
         btnAgregarAmigo.setOnClickListener(new View.OnClickListener() {
             @Override
