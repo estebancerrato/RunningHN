@@ -63,6 +63,7 @@ public class ActivityTablero extends AppCompatActivity {
                     editor.commit();
                 Intent intent = new Intent(getApplicationContext(), ActivityLogin.class);
                 startActivity(intent);
+                finish();
 
             }
         });
