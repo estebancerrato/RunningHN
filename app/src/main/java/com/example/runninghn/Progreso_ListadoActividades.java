@@ -2,6 +2,9 @@ package com.example.runninghn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,7 +40,7 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
     private final ArrayList<Actividad> listaActividades = new ArrayList<>();
     ListView listViewCustomAdapter;
     AdaptadorListaActividad adaptador;
-
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +117,19 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
                     listViewCustomAdapter.setAdapter(adaptador);
 
                 }catch (JSONException ex){
-                    Toast.makeText(getApplicationContext(), "Error al listar actividades "+ex, Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                    alertDialogBuilder.setTitle("Mensaje: ");
+                    alertDialogBuilder
+                            .setMessage("No hay listas de actividades")
+                            .setCancelable(false)
+                            .setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    finish();
+                                }
+                            });
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
                 }
             }
 
