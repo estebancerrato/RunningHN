@@ -7,25 +7,31 @@
     android:orientation="vertical"
     tools:context=".ActivitiAmigos">
 
-    <Button
-        android:id="@+id/actbtnAgregarAmigo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar amigo" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/amtxtBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Buscar"
-        android:inputType="textPersonName" />
+        <Button
+            android:id="@+id/amigosbtnAtras"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Atras" />
+
+        <Button
+            android:id="@+id/actbtnAgregarAmigo"
+            android:layout_width="281dp"
+            android:layout_height="wrap_content"
+            android:text="Agregar amigo" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Listado de amigos:" />
+        android:text="Listado de amigos:"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/listaMisAmigos"

@@ -55,6 +55,14 @@ public class ActivitiAmigos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activiti_amigos);
+        Button btnAtras = findViewById(R.id.amigosbtnAtras);
+
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         listViewCustomAdapter = findViewById(R.id.listaMisAmigos);
         adaptador = new ActivitiAmigos.AdaptadorUsuario(this);

@@ -58,6 +58,10 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
     final Context context = this;
 
     int amigo;
+    //boton atras
+    @Override public void onBackPressed() {
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +76,13 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent inten = new Intent(getApplicationContext(),ActivitiAmigos.class);
-                startActivity(inten);
+//                Intent inten = new Intent(getApplicationContext(),ActivitiAmigos.class);
+//                startActivity(inten);
+//                |Intent.FLAG_ACTIVITY_CLEAR_TOP
+                Intent intent = new Intent(getApplicationContext(), ActivitiAmigos.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                startActivity(intent);
+                finish();
             }
         });
     }
