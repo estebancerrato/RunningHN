@@ -67,9 +67,8 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
 
 
-    EditText txtNombre,txtApellido;
-    TextView peso, altura;
-    TextView txtFechaNac;
+    EditText txtNombre,txtApellido,txtTelefono;
+    TextView peso, altura,txtFechaNac;
     Spinner SpiPais;
     Button btnActualizar,btnTomarFoto,btnSelectGaleria,btnAtras;
     ImageView Foto;
@@ -147,6 +146,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         txtNombre = (EditText) findViewById(R.id.actutxtnombre);
         txtApellido =  (EditText) findViewById(R.id.actutxtapellidos);
         txtFechaNac =  (TextView) findViewById(R.id.actuFechaNac);
+        txtTelefono =(EditText) findViewById(R.id.actxtTelefono);
         SpiPais =  (Spinner)  findViewById(R.id.actucmbPais);
 
         btnActualizar = (Button) findViewById(R.id.actbtnActualizar);
@@ -159,7 +159,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         String nombres =getIntent().getStringExtra("nombres");
         String apellidos =getIntent().getStringExtra("apellidos");
         String fechaNac =getIntent().getStringExtra("fechanac");
-        String cod_pais = getIntent().getStringExtra("codigo_pais");
+        String telefono = getIntent().getStringExtra("telefono");
         String peso =getIntent().getStringExtra("peso");
         String altura =getIntent().getStringExtra("altura");
         fotoString =getIntent().getStringExtra("foto");
@@ -167,6 +167,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         txtNombre.setText(nombres);
         txtApellido.setText(apellidos);
         txtFechaNac.setText(fechaNac);
+        txtTelefono.setText(telefono);
         this.peso.setText(peso);
         this.altura.setText(altura);
         mostrarFoto(fotoString);
@@ -286,6 +287,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
         parametros.put("nombres", txtNombre.getText().toString());
         parametros.put("apellidos", txtApellido.getText().toString());
         parametros.put("fecha_nac", txtFechaNac.getText().toString());
+        parametros.put("telefono",txtTelefono.getText().toString());
         parametros.put("peso", peso.getText().toString());
         parametros.put("altura", altura.getText().toString());
         parametros.put("email", correo);
