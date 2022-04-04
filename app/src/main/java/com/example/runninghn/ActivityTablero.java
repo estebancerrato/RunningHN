@@ -34,7 +34,7 @@ public class ActivityTablero extends AppCompatActivity {
     }
 
     TextView btnNuevaCarrera,btnVerProgreso, btnEstadistica;
-    ImageView btnMostrarAmigos, clasificacion;
+    ImageView btnMostrarAmigos, clasificacion, btnCerrarSesion;
 
 
     public static final String tablero_correo = RestApiMethods.correo;
@@ -51,6 +51,21 @@ public class ActivityTablero extends AppCompatActivity {
         btnMostrarAmigos = findViewById(R.id.tablerobtnAmigos);
         btnEstadistica = findViewById(R.id.tablerobtnEstadistica);
         clasificacion = findViewById(R.id.ranking);
+        btnCerrarSesion = findViewById(R.id.tabCerrarSesion);
+
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences mSharedPrefs = getSharedPreferences("credenciales",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mSharedPrefs.edit();
+                    editor.putString("usuario","");
+                    editor.putString("password","");
+                    editor.commit();
+                Intent intent = new Intent(getApplicationContext(), ActivityLogin.class);
+                startActivity(intent);
+
+            }
+        });
 
         perfil.setOnClickListener(new View.OnClickListener() {
             @Override

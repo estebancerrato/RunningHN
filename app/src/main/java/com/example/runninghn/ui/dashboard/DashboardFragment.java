@@ -110,9 +110,9 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void run() {
                 metodoEjecutar();//llamamos nuestro metodo
-                handler.postDelayed(this,10000);//se ejecutara cada 10 segundos
+                handler.postDelayed(this,5000);//se ejecutara cada 10 segundos
             }
-        },5000);//empezara a ejecutarse después de 5 milisegundos
+        },1000);//empezara a ejecutarse después de 5 milisegundos
     }
     private void metodoEjecutar() {
         //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
@@ -124,6 +124,7 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
         longitud= ActivityNuevaCarrera.getLongitud();
          LatLng pfinal = new LatLng(latitud, longitud);
 
+        mMap.addMarker(new MarkerOptions().position(pfinal).title("Punto Inicial").icon(BitmapDescriptorFactory.defaultMarker()));
 
 
         if (ActivityNuevaCarrera.btnComenzar.getText().equals("Comenzar")){
@@ -149,7 +150,6 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
         }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pfinal, 17));
-        Toast.makeText(getContext(), "KM recorrido: "+km, Toast.LENGTH_SHORT).show();
 
     }
 
