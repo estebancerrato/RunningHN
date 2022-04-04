@@ -177,7 +177,6 @@ public class ActivitiAmigos extends AppCompatActivity {
                                         eliminarAmigo(Integer.valueOf(RestApiMethods.codigo_usuario),amigo);
                                         startActivity(new Intent(getApplicationContext(), ActivitiAmigos.class));
                                         finish();
-
                                     }
                                 })
                                 .setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -186,15 +185,10 @@ public class ActivitiAmigos extends AppCompatActivity {
                                         dialog.cancel();
                                     }
                                 });
-
-
                         // create alert dialog
                         AlertDialog alertDialog = alertDialogBuilder.create();
                         alertDialog.show();
-                    }else{
-
                     }
-                    Toast.makeText(getApplicationContext(), "Se Elimino de tu lista de amigos"+amigo, Toast.LENGTH_SHORT).show();
 
                     amigo = listaUsuarios.get(position).getId();
                 }

@@ -142,7 +142,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                         guardarRecorrido(idusuario,DashboardFragment.km,tiempo);
 
 
-                        new CountDownTimer(3000, 1000) {
+                        new CountDownTimer(5000, 1000) {
                             public void onFinish() {
                                 // When timer is finished
                                 // Execute your code here
@@ -161,7 +161,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                                 // millisUntilFinished    The amount of time until finished.
                             }
                         }.start();
-                        new CountDownTimer(3001, 1000) {
+                        new CountDownTimer(10001, 1000) {
                             public void onFinish() {
                                 cerrarActividad();
                             }

@@ -305,8 +305,11 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+//                    Intent intent = new Intent(getApplicationContext(), ActivityTablero.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+//                    startActivity(intent);
                     Toast.makeText(getApplicationContext(), response.getString("mensaje").toString(), Toast.LENGTH_SHORT).show();
-                    finish();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -327,7 +330,7 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
 
     //-------------------------------------------------------------------------------------------------------------------
 
-    //***Metodo para convertir imagen a String***//
+
     private String GetStringImage(Bitmap photo) {
 
         try {

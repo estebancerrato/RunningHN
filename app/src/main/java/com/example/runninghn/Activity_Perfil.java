@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Activity_Perfil extends AppCompatActivity {
+    //ocultar menu del telefono
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
@@ -104,7 +105,8 @@ String email;
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(getApplicationContext(),ActivityTablero.class);
+                startActivity(intent);
 
             }
         });
@@ -181,25 +183,12 @@ String email;
         intent.putExtra("peso", usuario.getPeso()+"");
         intent.putExtra("altura", usuario.getAltura()+"");
         intent.putExtra("foto", usuario.getFoto()+"").toString();
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK );
         startActivity(intent);
+        finish();
     }
 
-    //***Metodo para convertir imagen a String***//
-    private String GetStringImage(Bitmap photo) {
 
-        try {
-            ByteArrayOutputStream ba = new ByteArrayOutputStream();
-            photo.compress(Bitmap.CompressFormat.JPEG, 70, ba);
-            byte[] imagebyte = ba.toByteArray();
-            String encode = Base64.encodeToString(imagebyte, Base64.DEFAULT);
-
-            return encode;
-        }catch (Exception ex)
-        {
-            ex.toString();
-        }
-        return "";
-    }
 
     public void mostrarFoto(String foto) {
         try {
@@ -213,11 +202,4 @@ String email;
         }
     }
 
-    /*===========MENU=======*/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
 }

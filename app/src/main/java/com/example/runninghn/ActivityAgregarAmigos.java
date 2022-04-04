@@ -90,7 +90,9 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
         setContentView(R.layout.activity_agregar_amigos);
         listViewCustomAdapter = findViewById(R.id.listaAmigos);
         adaptador = new AdaptadorUsuario(this);
-        String email = RestApiMethods.correo;
+        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+        String correo = mSharedPrefs.getString("correo","");
+        String email = correo;
         listarUsuarios(email);
 
         //ocultar menu
@@ -175,10 +177,9 @@ public class ActivityAgregarAmigos extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 adaptador.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "Error "+error.toString(), Toast.LENGTH_SHORT).show();
+               //---deja de tocar el codigo Jennifer !!!!
             }
         });
-
         queue.add(jsonObjectRequest);
     }
 
