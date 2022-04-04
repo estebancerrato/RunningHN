@@ -67,9 +67,11 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
             TextView fecha = item.findViewById(R.id.adaplblfecha);
             TextView kilometros = item.findViewById(R.id.adaplblkm);
             TextView tiempo = item.findViewById(R.id.adaplbltiempo);
+            TextView kcal = item.findViewById(R.id.adaplblkcal);
             fecha.setText(listaActividades.get(position).getFecha());
             kilometros.setText(listaActividades.get(position).getKilometro());
             tiempo.setText(listaActividades.get(position).getTiempo());
+            kcal.setText(listaActividades.get(position).getKcal());
 
             btnverRecorrido.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,13 +99,15 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
                 try {
                     JSONArray usuarioArray = response.getJSONArray("actividades");
 
-                    //listaActividades.clear();//limpiar la lista de usuario antes de comenzar a listar
+                    listaActividades.clear();//limpiar la lista de usuario antes de comenzar a listar
                     for (int i = 0; i < usuarioArray.length(); i++) {
                         JSONObject RowActividad = usuarioArray.getJSONObject(i);
                         Actividad actividad = new Actividad(RowActividad.getString("codigo_actividad"),
                                 RowActividad.getString("fechahora"),
                                 RowActividad.getString("distancia"),
-                                RowActividad.getString("tiempo"));
+                                RowActividad.getString("tiempo"),
+                                RowActividad.getString("kcal")
+                        );
                         listaActividades.add(actividad);
 
                     }

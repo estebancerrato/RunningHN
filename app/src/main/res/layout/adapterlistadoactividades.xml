@@ -56,13 +56,13 @@
 
             <TextView
                 android:id="@+id/adaplbltiempo"
-                android:layout_width="89dp"
+                android:layout_width="67dp"
                 android:layout_height="wrap_content"
                 android:text="00:00:11" />
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
+                android:id="@+id/adaplblkcal"
+                android:layout_width="49dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="15" />
