@@ -156,6 +156,7 @@ String email;
         intent.putExtra("apellidos", usuario.getApellidos()+"");
         intent.putExtra("fechanac", usuario.getFechaNac()+"");
         intent.putExtra("codigo_pais", usuario.getCodigo_pais()+"");
+        intent.putExtra("telefono", usuario.getTelefono()+"");
         intent.putExtra("peso", usuario.getPeso()+"");
         intent.putExtra("altura", usuario.getAltura()+"");
         intent.putExtra("foto", usuario.getFoto()+"").toString();
