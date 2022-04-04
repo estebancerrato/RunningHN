@@ -3,6 +3,7 @@ package com.example.runninghn;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -128,7 +129,9 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                 }else if (btnComenzar.getText().equals("DETENER")){
                     try {
                         String tiempo = txtTiempo.getText().toString();
-                        guardarRecorrido(RestApiMethods.codigo_usuario,DashboardFragment.km,tiempo);
+                        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+                        String idusuario = mSharedPrefs.getString("idusuario","");
+                        guardarRecorrido(idusuario,DashboardFragment.km,tiempo);
 
 
                         new CountDownTimer(5000, 1000) {
