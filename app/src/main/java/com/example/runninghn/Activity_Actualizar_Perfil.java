@@ -201,7 +201,6 @@ public class Activity_Actualizar_Perfil extends AppCompatActivity {
                 SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas", Context.MODE_PRIVATE);
                 String correo = mSharedPrefs.getString("correo","");
                 ActualizarDatos(correo);
-                finish();
             }
         });
 

@@ -110,9 +110,9 @@ public class DashboardFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void run() {
                 metodoEjecutar();//llamamos nuestro metodo
-                handler.postDelayed(this,5000);//se ejecutara cada 10 segundos
+                handler.postDelayed(this,5000);//se ejecutara cada 5 segundos
             }
-        },1000);//empezara a ejecutarse después de 5 milisegundos
+        },2000);//empezara a ejecutarse después de 5 milisegundos
     }
     private void metodoEjecutar() {
         //valida si tiene los permisos de ser asi manda a llamar el metodo locationStart()
