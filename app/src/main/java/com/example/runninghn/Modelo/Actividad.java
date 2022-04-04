@@ -5,17 +5,27 @@ public class Actividad {
     String fecha;
     String kilometro;
     String tiempo;
+    String kcal;
 
 
     public Actividad() {
 
     }
 
-    public Actividad(String codigo_actividad, String fecha, String kilometro, String tiempo) {
+    public Actividad(String codigo_actividad, String fecha, String kilometro, String tiempo, String kcal) {
         this.codigo_actividad = codigo_actividad;
         this.fecha = fecha;
         this.kilometro = kilometro;
         this.tiempo = tiempo;
+        this.kcal = kcal;
+    }
+
+    public String getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(String kcal) {
+        this.kcal = kcal;
     }
 
     public String getCodigo_actividad() {
