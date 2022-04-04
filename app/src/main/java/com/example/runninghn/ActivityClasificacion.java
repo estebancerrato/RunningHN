@@ -49,6 +49,13 @@ public class ActivityClasificacion extends AppCompatActivity {
         adaptador = new AdaptadorClasificacion(this);
         //mando a llamar el metodo que me traera el listado de clasificacion
         obtenerlistadoClasificacion(ActivityTablero.tablero_codigo_usuario);
+        TextView btnAtras = findViewById(R.id.textViewEstadisAtras);
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     class AdaptadorClasificacion extends ArrayAdapter<Clasificacion> {
