@@ -18,6 +18,24 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.runninghn.Modelo.RestApiMethods;
 
 public class ActivityAnuncio4 extends AppCompatActivity {
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
 
     SharedPreferences mSharedPrefs;
 
@@ -28,6 +46,12 @@ public class ActivityAnuncio4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anuncio4);
         mDetector = new GestureDetectorCompat(this, new MyGestureListener());
+
+
+        //ocultar menu
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
 
         // Lottie Animation
         LottieAnimationView animationViewRemote = findViewById(R.id.abtnnextlogin);

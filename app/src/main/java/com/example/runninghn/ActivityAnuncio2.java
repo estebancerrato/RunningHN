@@ -15,6 +15,24 @@ import androidx.core.view.GestureDetectorCompat;
 import com.airbnb.lottie.LottieAnimationView;
 
 public class ActivityAnuncio2 extends AppCompatActivity {
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
     private GestureDetectorCompat mDetector;
 
     @Override
@@ -30,6 +48,11 @@ public class ActivityAnuncio2 extends AppCompatActivity {
                 openActivity3();
             }
         });
+
+        //ocultar menu
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
 
         // Lottie Animation
         LottieAnimationView animationViewRemote = findViewById(R.id.abtnnext2);
