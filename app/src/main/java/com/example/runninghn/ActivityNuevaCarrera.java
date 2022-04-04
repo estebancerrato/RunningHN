@@ -68,7 +68,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
     }
 
 
-    public static Button btnComenzar;
+    public static Button btnComenzar, btnDetener;
     EditText txtLat,txtLon, txtTiempo;
 
     public static String latitud = "";
@@ -108,13 +108,19 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
         iniciarTiempo();
 
         btnComenzar = (Button) findViewById(R.id.btnComenzar);
+        btnDetener = (Button) findViewById(R.id.btnDetener);
 
         txtLat = (EditText) findViewById(R.id.txtLat);
         txtLon = (EditText) findViewById(R.id.txtLon);
         txtTiempo = (EditText) findViewById(R.id.nctiempo);
 
 
+        btnDetener.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,7 +132,9 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                     running1 =true;
 
 
-                }else if (btnComenzar.getText().equals("DETENER")){
+                } else
+
+                if (btnComenzar.getText().equals("DETENER")){
                     try {
                         String tiempo = txtTiempo.getText().toString();
                         SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
@@ -134,7 +142,7 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                         guardarRecorrido(idusuario,DashboardFragment.km,tiempo);
 
 
-                        new CountDownTimer(5000, 1000) {
+                        new CountDownTimer(3000, 1000) {
                             public void onFinish() {
                                 // When timer is finished
                                 // Execute your code here
@@ -142,7 +150,6 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                                 System.out.println("Latitud: "+DashboardFragment.recorridoMapLatitud.get(0));
                                 System.out.println("Longitud:"+DashboardFragment.recorridoMapLongitud.get(0));
                                 if (DashboardFragment.recorridoMapLongitud !=null) {
-                                    Toast.makeText(getApplicationContext(),"recorrido"+DashboardFragment.recorridoMapLatitud.get(0),Toast.LENGTH_SHORT).show();
                                     for (int indice = 0; indice < DashboardFragment.recorridoMapLongitud.size(); indice++) {
                                         guardarDetallesRecorrido(codigo_actividad[0], DashboardFragment.recorridoMapLatitud.get(indice), DashboardFragment.recorridoMapLongitud.get(indice));
                                     }
@@ -154,20 +161,22 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                                 // millisUntilFinished    The amount of time until finished.
                             }
                         }.start();
+                        new CountDownTimer(3001, 1000) {
+                            public void onFinish() {
+                                cerrarActividad();
+                            }
 
+                            public void onTick(long millisUntilFinished) {
+                                // millisUntilFinished    The amount of time until finished.
+                            }
+                        }.start();
 
-
-
-                        cerrarActividad();
 
                         Toast.makeText(getApplicationContext(),"recorrido "+ DashboardFragment.recorridoMapLatitud+", "+DashboardFragment.recorridoMapLongitud,Toast.LENGTH_LONG).show();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-
                 }
-
-
             }
         });
 
@@ -276,6 +285,9 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
                 remove(getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView)).commit();
         getSupportFragmentManager().beginTransaction().
                 remove(getSupportFragmentManager().findFragmentById(R.id.navigation_dashboard));
+        Intent intent = new Intent(getApplicationContext(), ActivityTablero.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+        startActivity(intent);
         finish();
     }
 
