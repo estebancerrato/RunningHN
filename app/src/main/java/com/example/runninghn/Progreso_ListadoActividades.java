@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +50,14 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
         listViewCustomAdapter = findViewById(R.id.listadoActividades);
         adaptador = new Progreso_ListadoActividades.AdaptadorListaActividad(this);
 
-        listadoActividad(ActivityTablero.tablero_codigo_usuario);
+        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
+        String user = mSharedPrefs.getString("correo","");
+        String idusuario = mSharedPrefs.getString("idusuario","");
+
+        Toast.makeText(getApplicationContext(),"Usuario "+idusuario,Toast.LENGTH_SHORT).show();
+
+
+        listadoActividad(idusuario);
 
 
     }

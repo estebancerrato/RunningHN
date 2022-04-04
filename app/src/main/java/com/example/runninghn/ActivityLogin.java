@@ -145,7 +145,8 @@ public class ActivityLogin extends AppCompatActivity {
                             mSharedPrefsPublico = getSharedPreferences("credencialesPublicas",Context.MODE_PRIVATE);
                             SharedPreferences.Editor editorPublico = mSharedPrefsPublico.edit();
                             String userPublic = txtcorreo.getText().toString();
-                            editorPublico.putString("usuarioPublic",userPublic);
+                            editorPublico.putString("correo",txtcorreo.getText().toString());
+                            editorPublico.putString("idusuario",codigo );
                             editorPublico.commit();
 
 

@@ -1,10 +1,13 @@
 package com.example.runninghn;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +17,8 @@ public class ActivityTablero extends AppCompatActivity {
 
     TextView btnNuevaCarrera,btnVerProgreso, btnEstadistica;
     ImageView btnMostrarAmigos, clasificacion;
+
+
     public static final String tablero_correo = RestApiMethods.correo;
     public static final String tablero_codigo_usuario = RestApiMethods.codigo_usuario;
 
