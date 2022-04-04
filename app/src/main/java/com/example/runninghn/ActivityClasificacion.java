@@ -2,7 +2,9 @@ package com.example.runninghn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -66,7 +68,10 @@ public class ActivityClasificacion extends AppCompatActivity {
         listViewCustomAdapter = findViewById(R.id.listadoClasificacion);
         adaptador = new AdaptadorClasificacion(this);
         //mando a llamar el metodo que me traera el listado de clasificacion
-        obtenerlistadoClasificacion(ActivityTablero.tablero_codigo_usuario);
+        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas", Context.MODE_PRIVATE);
+        String codigo_usuario = mSharedPrefs.getString("idusuario","");
+
+        obtenerlistadoClasificacion(codigo_usuario);
         TextView btnAtras = findViewById(R.id.textViewEstadisAtras);
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
