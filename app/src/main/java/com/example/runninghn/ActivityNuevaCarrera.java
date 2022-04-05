@@ -107,8 +107,8 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
         iniciarTiempo();
 
-        //btnComenzar = (Button) findViewById(R.id.btnComenzar);
-        TextView btnComenzar = findViewById(R.id.btnComenzar);
+        btnComenzar = (Button) findViewById(R.id.btnComenzar);
+        //TextView btnComenzar = findViewById(R.id.btnComenzar);
         //btnDetener = (Button) findViewById(R.id.btnDetener);
 
         txtLat = (EditText) findViewById(R.id.txtLat);
