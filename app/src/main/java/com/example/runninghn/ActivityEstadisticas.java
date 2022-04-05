@@ -2,6 +2,8 @@ package com.example.runninghn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -63,7 +65,10 @@ public class ActivityEstadisticas extends AppCompatActivity {
         recorridoSemanaActual = findViewById(R.id.TextViewRecorridoSeActual);
         recorridoMesAnterior = findViewById(R.id.TextViewRecorridoMesAnterio);
         recorridoMesActual = findViewById(R.id.TextViewRecorridoMesActual);
-        mostrarEstadisticos(ActivityTablero.tablero_codigo_usuario);
+
+        SharedPreferences mSharedPrefs = getSharedPreferences("credencialesPublicas", Context.MODE_PRIVATE);
+        String idusuario = mSharedPrefs.getString("idusuario","");
+        mostrarEstadisticos(idusuario);
 
     }
 
