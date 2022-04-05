@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.example.runninghn.Modelo.Usuario;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,7 +77,8 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = appCompatActivity.getLayoutInflater();
             View item = inflater.inflate(R.layout.adapterlistadoactividades, null);
-            Button btnverRecorrido = item.findViewById(R.id.adapbtnverRecorrido);
+            //Button btnverRecorrido = item.findViewById(R.id.adapbtnverRecorrido);
+            LinearLayout btnverRecorrido = item.findViewById(R.id.adapbtnverRecorrido);
             TextView fecha = item.findViewById(R.id.adaplblfecha);
             TextView kilometros = item.findViewById(R.id.adaplblkm);
             TextView tiempo = item.findViewById(R.id.adaplbltiempo);
@@ -84,6 +87,14 @@ public class Progreso_ListadoActividades extends AppCompatActivity {
             kilometros.setText(listaActividades.get(position).getKilometro());
             tiempo.setText(listaActividades.get(position).getTiempo());
             kcal.setText(listaActividades.get(position).getKcal());
+
+            TextView btnAtras = findViewById(R.id.actbtnAtras);
+            btnAtras.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
 
             btnverRecorrido.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -107,20 +107,21 @@ public class ActivityNuevaCarrera extends AppCompatActivity{
 
         iniciarTiempo();
 
-        btnComenzar = (Button) findViewById(R.id.btnComenzar);
-        btnDetener = (Button) findViewById(R.id.btnDetener);
+        //btnComenzar = (Button) findViewById(R.id.btnComenzar);
+        TextView btnComenzar = findViewById(R.id.btnComenzar);
+        //btnDetener = (Button) findViewById(R.id.btnDetener);
 
         txtLat = (EditText) findViewById(R.id.txtLat);
         txtLon = (EditText) findViewById(R.id.txtLon);
         txtTiempo = (EditText) findViewById(R.id.nctiempo);
 
 
-        btnDetener.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        btnDetener.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

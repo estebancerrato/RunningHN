@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -89,7 +90,10 @@ public class ActivityRegistrar extends AppCompatActivity {
     EditText nombres, apellidos, telefono, correo, contrasenia1, contrasenia2 ;
     TextView peso, altura,txtMostrarContra;
     Spinner cmbpais;
-    Button btnguardar,btnTomaFoto,btnGaleria,btnMostrarContra;
+    //Button btnguardar,btnTomaFoto,btnGaleria,btnMostrarContra;
+    TextView btnguardar, btnatras;
+    LinearLayout btnTomaFoto,btnGaleria;
+    ImageView btnMostrarContra;
     String contrasenia;
     ImageView Foto;
 
@@ -125,10 +129,22 @@ public class ActivityRegistrar extends AppCompatActivity {
         peso = (TextView) findViewById(R.id.rtxtPeso);
         altura = (TextView) findViewById(R.id.rtxtAltura);
         cmbpais = (Spinner) findViewById(R.id.rcmbPais);
-        btnguardar = (Button) findViewById(R.id.rbtnGuardar);
-        btnTomaFoto = (Button) findViewById(R.id.rbtnTomarFoto);
-        btnGaleria = (Button) findViewById(R.id.rbtngaleria);
-        btnMostrarContra = (Button) findViewById(R.id.arbtnMostrarContra);
+//        btnguardar = (Button) findViewById(R.id.rbtnGuardar);
+//        btnTomaFoto = (Button) findViewById(R.id.rbtnTomarFoto);
+//        btnGaleria = (Button) findViewById(R.id.rbtngaleria);
+//        btnMostrarContra = (Button) findViewById(R.id.arbtnMostrarContra);
+        btnguardar = findViewById(R.id.rbtnGuardar);
+        btnTomaFoto = findViewById(R.id.rbtnTomarFoto);
+        btnGaleria = findViewById(R.id.rbtngaleria);
+        btnMostrarContra = findViewById(R.id.arbtnMostrarContra);
+        btnatras = findViewById(R.id.regbtnAtras);
+
+        btnatras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         intent = new Intent(getApplicationContext(), ActivityRegistrar.class);//para obtener el contacto seleccionado mas adelante
 

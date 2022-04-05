@@ -56,8 +56,7 @@
                     android:maxWidth="200dp"
                     android:minWidth="200dp"
                     android:scaleType="fitXY"
-                    app:srcCompat="@drawable/contacto"
-                    tools:srcCompat="@drawable/contacto"
+                    app:srcCompat="@drawable/user"
                     android:layout_gravity="center"/>
 
                 <LinearLayout

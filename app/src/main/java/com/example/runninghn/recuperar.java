@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -42,7 +43,8 @@ public class recuperar extends Activity {
     Session session = null; //Inicio de session para autenticar usuario y password
     ProgressDialog pdialog = null; //dialogo del proceso
     EditText destinatario; //Ingreso del correo a enviar
-    Button enviar; //Boton para enviar el correo
+//    Button enviar; //Boton para enviar el correo
+    TextView enviar; //Boton para enviar el correo
     String para, asunto, mensaje;//Para datos del mensaje
     String usuario=null, password=null, nombrecompleto=null;
     //Variable que contiene la URL
